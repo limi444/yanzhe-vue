@@ -32,9 +32,9 @@
 import { getCategory } from '../api/api'
 export default {
   name: 'Category.vue',
-  // props: {
-  //   category_id: Number
-  // },
+  props: {
+    category_id: Number
+  },
   data () {
     return {
       categoryId: 0, // 需要上传的第三类别ID

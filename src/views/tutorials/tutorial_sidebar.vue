@@ -103,11 +103,9 @@ export default {
     // 单击获取类别下的子类信息描述
     clickCategory1 (cateData, index) {
       this.showAllmenu1 = index
-      // console.log(cateData)
       this.$emit('selectedHandle', cateData.sub_category)
     },
     clickCategory2 (cateData, index) {
-      // console.log(cateData)
       this.showAllmenu2 = index
       this.$emit('selectedHandle', cateData.sub_category)
     },
@@ -119,9 +117,7 @@ export default {
       })
     },
     getRecommendData () {
-      listArticle({
-
-      })
+      listArticle({})
         .then((response) => {
           this.recommendList = response.data
         })

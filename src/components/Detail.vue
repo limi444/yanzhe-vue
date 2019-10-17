@@ -7,7 +7,7 @@
         <p v-html="articleData.content"></p>
       </div>
       <div v-else>
-        <p>{{ articleData.content }}</p>
+        <p v-html="markdownContent" v-highlight></p>
       </div>
 
       <div class="previous-item">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  import marked from 'marked'
 import {getBlogsArticle, getForumsNote, getArticle} from '../api/api'
 
 export default {
@@ -41,7 +42,14 @@ export default {
       articleId: 0,
       articleData: {},
       nextData: {},
-      previousData: {}
+      previousData: {},
+    }
+  },
+  computed :{
+    markdownContent () {
+      if (this.articleData.content) {
+        return marked(this.articleData.content)
+      }
     }
   },
   methods: {
@@ -95,6 +103,7 @@ export default {
         // this.$router.push({name: 'about'})
       }
     }
+
   },
   created () {
     this.articleId = this.$route.params.articleId

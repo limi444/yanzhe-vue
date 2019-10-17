@@ -1,5 +1,5 @@
 <template>
-    <div id="tinymce">
+    <div id="tinymce-editor">
         <!-- Main pane -->
         <section class="content box">
             <div class="edit-form">
@@ -35,11 +35,11 @@
                     </div>
                 </fieldset>
 
-                <div class="submit-row">
-                    <button @click="updateArticleData" title="_save">保存</button>
-                    <button @click="" title="_addanother">草稿</button>
-                    <button @click="" title="_continue">保存并增加另一个</button>
-                </div>
+<!--                <div class="submit-row">-->
+<!--                    <button @click="updateArticleData" title="_save">保存</button>-->
+<!--                    <button @click="" title="_addanother">草稿</button>-->
+<!--                    <button @click="" title="_continue">保存并增加另一个</button>-->
+<!--                </div>-->
             </div>
         </section>
     </div>
@@ -74,6 +74,13 @@ export default {
     },
     props: {
         category_id: Number,
+        article: {
+            type: Object,
+            default: function () {
+                return { title: '123', descri: '', content: '', status: 1, edit_mode: 1, category: 0, create_time: '' }
+            }
+        },
+        // tinymce参数
         disabled: {
             type: Boolean,
             default: false
@@ -95,12 +102,12 @@ export default {
                 language_url: '/tinymce/langs/zh_CN.js',
                 language: 'zh_CN',
                 skin_url: '/tinymce/skins/ui/oxide',
-                height: 370,
+                height: 680,
                 branding: false,//是否禁用“Powered by TinyMCE” > 去水印
                 menubar: false,//顶部菜单栏显示
                 plugins: this.plugins, // 插件
                 toolbar: this.toolbar,  // 工具栏，false时隐藏工具栏
-                statusbar: false, // 隐藏底部状态栏
+                // statusbar: false, // 隐藏底部状态栏
                 elementpath: false, // 禁用下角的当前标签路径
                 paste_data_images: true, // 允许粘贴图片
                 browser_spellcheck: false, // 拼写检查
@@ -113,15 +120,6 @@ export default {
                 }
             },
             selectedCategory: 0,
-            articleData: {
-                title: '',
-                descri: '',
-                content: '',
-                status: 1,
-                edit_mode: 1,
-                category: 0,
-                create_time: ''
-            },
         }
     },
     mounted () {
@@ -137,11 +135,17 @@ export default {
     },
     // Computed properties
     computed: {
-
+        articleData () {
+            return this.article
+        },
     },
 
     // Change watchers
     watch: {
+        articleData: {
+            handler: 'pushArticle',
+            deep: true
+        },
         // When our notes change, we save them
         notes: {
             // The method name
@@ -154,6 +158,9 @@ export default {
     methods: {
         changeEditMode (mode) {
             this.$emit('selectedMode', mode)
+        },
+        pushArticle () {
+            this.$emit('pullArticle', this.articleData)
         },
         listenToCategory: function (cateid) {
             this.articleData.category = cateid
@@ -171,19 +178,35 @@ export default {
             // 如果存在articleId，就获取文章数据进行更新
             if (this.articleId) {
                 updateArticle(this.articleData).then((response) => {
-                    // console.log(this.articleData)
-                    // console.log(response)
                     // this.articleData = response.data
-                    this.$router.push({path: `/tutorials/detail/${this.articleId}`})
+                    var type = this.$route.matched[0].path
+                    if (type === '/blogs') {
+                        this.$router.push({name: 'blogsDetail', params: { articleId: id }})
+                    }
+                    if (type === '/forums') {
+                        this.$router.push({name: 'forumsDetail', params: { articleId: id }})
+                    }
+                    if (type === '/tutorials') {
+                        this.$router.push({name: 'tutorialsDetail', params: { articleId: id }})
+                    }
                 })
                     .catch(function (error) {
                         console.log(error)
                     })
             } else {
                 createArticle(this.articleData).then((response) => {
-                    console.log(this.articleData)
                     this.articleId = response.data.id
-                    this.$router.push({name: 'Detail', params: { articleId: this.articleId }})
+                    // this.articleData = response.data
+                    var type = this.$route.matched[0].path
+                    if (type === '/blogs') {
+                        this.$router.push({name: 'blogsDetail', params: { articleId: id }})
+                    }
+                    if (type === '/forums') {
+                        this.$router.push({name: 'forumsDetail', params: { articleId: id }})
+                    }
+                    if (type === '/tutorials') {
+                        this.$router.push({name: 'tutorialsDetail', params: { articleId: id }})
+                    }
                 })
             }
         },
@@ -215,13 +238,13 @@ export default {
     /*  !*}*!*/
     /*  }*/
 
-    #tinymce {
+    #tinymce-editor {
         margin-left: 20px;
         margin-top: 10px;
         align-items : flex-end;
         /*width: auto;*/
         min-width: 1600px;
-        min-height: 600px;
+        min-height: 800px;
         /*沿水平主轴让元素从左向右排列*/
         /*flex-direction:row;*/
     }
@@ -242,19 +265,11 @@ export default {
         /*沿垂直主轴让元素从上向下排列*/
         flex-direction: column;
     }
-
-    .preview {
-        padding: 10px;
-        text-align: left;
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        height: 300px;
-        flex: 1 1 auto;
-        overflow: auto;
-        border: solid 5px #cccccc;
-        border-radius: 10px;
+    .edit-form{
+        min-height: inherit;
     }
     fieldset {
+        min-height: inherit;
         margin-top: 2px;
         border-radius: 10px;
         padding: 5px 10px;
@@ -274,9 +289,7 @@ export default {
         font-family: monospace;
     }
 
-    button,
-    input,
-    textarea {
+    input, textarea {
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
@@ -284,23 +297,9 @@ export default {
         outline: none !important;
     }
 
-    button {
-        background: #40b883;
-        color: white;
-        border-radius: 3px;
-        border: none;
-        display: inline-block;
-        padding: 8px 12px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: #63c89b;
-    }
-
     input {
         width: 400px;
-        border: solid 1px #ade2ca;
+        border: solid 1px #CCCCCC;
         border-radius: 3px;
         padding: 2px 10px;
         background: #f0f9f5;
@@ -311,29 +310,6 @@ export default {
     input {
         height: 34px;
     }
-
-    .toolbar {
-        padding: 4px;
-        box-sizing: border-box;
-    }
-
-    .status-bar {
-        margin-top: -5px;
-        margin-left: 5px;
-        font-size: 12px;
-        /*margin: 0 10px;*/
-        padding: 0 20px;
-        color: #777;
-        background-color: #eeeeee;
-        border-radius: 5px;
-    }
-    .status-bar > span {
-        margin-right: 30px;
-    }
-    .status-bar > span .label{
-        color: #40b883;
-    }
-
     a {
         color: #40b883;
     }

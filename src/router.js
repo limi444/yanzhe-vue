@@ -10,7 +10,6 @@ import blogsIndex from './views/blogs/Index'
 
 import tutorialBase from './views/tutorials/tutorial_base'
 import tutorialIndex from './views/tutorials/Index'
-import tutorialEdit from './components/Edit'
 import tutorialList from './views/tutorials/List'
 
 import userInfo from './views/users/userInfo'
