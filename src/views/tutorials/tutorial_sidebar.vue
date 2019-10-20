@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import { getHotSearch, getWiseWord, listArticle } from '../../api/api'
-
+import { getWiseWord, listArticle } from '../../api/api'
+import { getCategory } from '../../api/api'
 export default {
   name: 'tutorial_sidebar',
-  props: ['allMenuLabel'],
+  // props: ['allMenuLabel'],
   data () {
     return {
       // hotSearch: [], //热词
@@ -66,7 +66,7 @@ export default {
       showAllmenu1: false, // 菜单显示控制
       showAllmenu2: false, // 菜单显示控制
       // 菜单
-      // allMenuLabel: [],
+      allMenuLabel: [],
       // showChildrenMenu: -1 // 菜单显示控制
       // showShopCar:false, // 购物车显示控制
       // isShowVip:false,
@@ -91,13 +91,6 @@ export default {
   methods: {
     // 双击获取分类文章数据
     dblclickArticleData (cateid) {
-      // alert(this.allMenuLabel)
-      // listArticle({
-      //   top_category: cateid
-      // }).then((response) => {
-      //   console.log(response.data)
-      // })
-      // alert(cateid)
       this.$router.push({name: 'tutorialsListArticle', params: { categoryId: cateid }})
     },
     // 单击获取类别下的子类信息描述
@@ -136,19 +129,22 @@ export default {
           console.log(error.data)
         })
     },
-    getHotSearch () { // 获取热搜
-      getHotSearch()
-        .then((response) => {
-          this.hotSearch = response.data
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
+      getMenu () { // 获取菜单
+          getCategory({
+              params: {}
+          }).then((response) => {
+              console.log(response.data)
+              this.allMenuLabel = response.data
+              // this.selectedData = response.data
+          })
+          .catch(function (error) {
+              console.log(error)
+          })
+      }
   },
   created () {
     this.getWiseWordData() // 获取鸡汤
-    // this.getMenu() // 获取菜单
+    this.getMenu() // 获取菜单
     // this.getHotSearch() // 获取热词
     // 更新store数据
     // this.$store.dispatch('setShopList') // 获取购物车数据

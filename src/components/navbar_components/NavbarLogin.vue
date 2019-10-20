@@ -35,22 +35,10 @@
 </script>
 
 <style scoped>
-  .navbar{
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*border: 2px solid #eeeeee;*/
-    border-radius: 10px;
-    width: 36%;
-    /*height: 60px;*/
-    margin: 0 auto;
-    position: absolute;
-    right: 3%;
-    float: right;
-  }
-  .navbar ul{
+  ul{
     padding: 0;
   }
-  .navbar li{
+  li{
     float: left;
     /*float: right;*/
     /*text-align: right;*/

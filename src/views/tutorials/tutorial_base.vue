@@ -5,8 +5,8 @@
     </div>
 
     <div class="container">
-      <tutorial-sidebar v-bind:allMenuLabel="menuData" v-on:selectedHandle="listenSubData"></tutorial-sidebar>
-      <router-view name = "main" class="main" :selectData="selectedData"></router-view>
+      <tutorial-sidebar></tutorial-sidebar>
+      <router-view name = "main"></router-view>
     </div>
 
     <div class="footer">
@@ -20,39 +20,20 @@
 import tutorialHeader from './tutorial_header'
 import tutorialSidebar from './tutorial_sidebar'
 import tutorialFooter from '../../components/Footer'
-import { getCategory } from '../../api/api'
+
 
 export default {
   name: 'tutorial_base',
   data () {
     return {
-      menuData: 'hello cml!',
-      selectedData: []
+      // menuData: 'hello cml!',
+      // selectedData: []
     }
   },
   components: {
     tutorialHeader,
     tutorialSidebar,
     tutorialFooter
-  },
-  methods: {
-    listenSubData (data) {
-      this.selectedData = data
-    },
-    getCategoryData () { // 获取菜单
-      getCategory({
-        params: {}
-      }).then((response) => {
-        this.menuData = response.data
-        this.selectedData = response.data
-      })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-  },
-  created () {
-    this.getCategoryData()
   }
 }
 </script>

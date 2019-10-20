@@ -20,19 +20,10 @@
 </template>
 
 <script>
-// import headers from './tutorial_header'
-// import footers from './tutorial_footer'
-// import sidebar from './tutorial_sidebar'
 import {getCategory} from '../../api/api'
 
 export default {
   name: 'index',
-  props: [
-    'selectData'
-  ],
-  // components: {
-  //   headers, footers, sidebar
-  // },
   data () {
     return {
       // selectData: [],
@@ -54,7 +45,7 @@ export default {
     }
   },
   created () {
-    this.getCategoryData({})
+    // this.getCategoryData({})
   }
 }
 </script>

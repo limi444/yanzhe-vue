@@ -11,7 +11,7 @@
       </ul>
     </div>
     <div class="overlay feature"></div><br>
-    <p>Copyright &copy; 2017.言者科技 All rights reserved.</p>
+    <p>Copyright &copy; 2017.言者 All rights reserved. 版权所有 粤ICP备18047373号-1 </p>
   </div>
 </template>
 

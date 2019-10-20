@@ -121,12 +121,11 @@ export default {
 /*  float: right;*/
 /*}*/
 #navbar{
-  margin: 0 auto;
-  /*left: 50%;*/
+  /*margin: 0 auto;*/
+  left: 600px;
   /*width: 400px;*/
-  border: 1px solid red;
-  float: right;
-  /*position: absolute;*/
+  /*float: right;*/
+  position: absolute;
 }
 
 </style>

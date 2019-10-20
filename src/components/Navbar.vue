@@ -29,11 +29,11 @@
   /*flex-direction: row;*/
   /*border: 2px solid #eeeeee;*/
   border-radius: 10px;
-  width: 500px;
+  width: 400px;
   /*height: 60px;*/
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   /*position: absolute;*/
-  right: 3%;
+  /*right: 3%;*/
   float: right;
 }
 

@@ -64,6 +64,17 @@
         // }
       }
     },
+    methods: {
+      getHotSearch () { // 获取热搜
+        getHotSearch()
+          .then((response) => {
+            this.hotSearch = response.data
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      },
+    }
   }
 </script>
 

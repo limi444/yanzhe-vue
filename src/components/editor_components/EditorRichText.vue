@@ -16,7 +16,7 @@
                             <input type="text" name="descri" maxlength="1024" id="id_descri" v-model="articleData.descri">
                         </div>
                     </div>
-                    <CategorySelect v-model="selectedCategory" v-on:selectCategoryhandle="listenToCategory"></CategorySelect>
+                    <CategorySelect v-model="selectedCategoryId" v-on:selectCategoryhandle="listenToCategory"></CategorySelect>
                     <div class="form-row field-edit_mode" style="float: right; margin-right: 10px" >
                         <div>
                             <label class="required" for="id_edit_mode">编辑器切换:</label>
@@ -119,7 +119,6 @@ export default {
                     // this.handleImgUpload(blobInfo, success, failure)
                 }
             },
-            selectedCategory: 0,
         }
     },
     mounted () {
@@ -138,6 +137,9 @@ export default {
         articleData () {
             return this.article
         },
+        selectedCategoryId () {
+            return this.article.category
+        }
     },
 
     // Change watchers

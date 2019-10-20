@@ -33,7 +33,7 @@ import { getCategory } from '../api/api'
 export default {
   name: 'Category.vue',
   props: {
-    category_id: Number
+    selectedCategoryId: Number
   },
   data () {
     return {
