@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-let host = 'http://127.0.0.1:8000/api'
+// let host = 'http://127.0.0.1:8000/api'
+let host = 'http://119.29.97.152:8000/api'
 
 // 获取商品类别信息
 export const getCategory = params => {
@@ -42,6 +43,6 @@ export const login = params => { return axios.post(`${host}/login/`, params) }
 // 注册
 export const register = parmas => { return axios.post(`${host}/users/`, parmas) }
 // 获取热门搜索关键词
-export const getHotSearch = params => { return axios.get(`${host}/hotsearchs/`) }
+// export const getHotSearch = params => { return axios.get(`${host}/hotsearchs/`) }
 // 短信
-export const getMessage = parmas => { return axios.post(`${host}/captcha/`, parmas) }
+// export const getMessage = parmas => { return axios.post(`${host}/captcha/`, parmas) }

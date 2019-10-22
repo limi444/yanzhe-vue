@@ -1,5 +1,5 @@
 <template>
-  <div id="section-footer">
+  <div id="footer">
     <div class="footer-content-block">
       <ul class="list-inline">
         <li><a href="/intros/index">示者</a></li>
@@ -11,7 +11,7 @@
       </ul>
     </div>
     <div class="overlay feature"></div><br>
-    <p>Copyright &copy; 2017.言者 All rights reserved. 版权所有 粤ICP备18047373号-1 </p>
+    <p>Copyright &copy; 2017.言者 All rights reserved. 版权所有 <a href="http://www.beian.miit.gov.cn">粤ICP备18047373号-1</a> </p>
   </div>
 </template>
 
@@ -22,7 +22,7 @@
 </script>
 
 <style scoped>
-  #section-footer{
+  #footer{
     position: relative;
     /*background: url("../../static/images/tutorials/footer-bg.jpg") fixed center center;*/
     background-color: rgba(200,200,200,0.3);
@@ -75,7 +75,10 @@
     width: 100%;
     /*position: fixed;*/
   }
-  a:hover{
+  #footer a {
+    color: white;
+  }
+  #footer a:hover{
     color: #fa8341;
   }
 </style>
