@@ -61,7 +61,7 @@ export default {
         // this.$store.state.userInfo.username = this.username;
         // this.$store.state.userInfo.token = response.data.token;
 
-        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('token', response.data.access)
         localStorage.setItem('username', this.username)
         this.$router.go(-1)
         // this.$router.push({name: 'tutorialsCreate'})

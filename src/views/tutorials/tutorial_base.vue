@@ -40,7 +40,6 @@ export default {
 
 <style scoped>
 .tutorials{
-  max-width: 1060px;
   min-width: 680px;
   margin: 0 auto;
   /*position: relative;*/
@@ -58,7 +57,7 @@ export default {
   /*border: 3px dashed red;*/
   display: inline-block;
   /*position: relative;*/
-  background: #eeeeee url("../../static/images/tutorials/circuit.png") top repeat-x;
+  /*background: #eeeeee url("../../static/images/tutorials/circuit.png") top repeat-x;*/
 }
 .main{
   width: auto;

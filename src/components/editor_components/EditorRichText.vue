@@ -29,8 +29,9 @@
 
                     <div class="form-row field-content">
                         <label for="id_content">文章内容:</label>
-                        <Editor id="id_content" v-model="articleData.content"
+                        <Editor id="id_content" v-model="article.content"
                                 :init="init" :disabled="disabled"></Editor>
+<!--                        <div v-html="articleData.content"></div>-->
 <!--                        <textarea class="tinymce" name="content" cols="40" rows="10" id="id_content" v-model="articleData.content"></textarea>-->
                     </div>
                 </fieldset>
@@ -63,7 +64,7 @@ import 'tinymce/plugins/textcolor'
 import Vue from 'vue'
 import moment from 'moment'
 import CategorySelect from '../../components/CategorySelect'
-import {getArticle, updateArticle, createArticle} from '../../api/api'
+import {getArticle, updateArticle, createArticle, uploadimg} from '../../api/api'
 Vue.filter('date', time => moment(time).format('YYYY-MM-DD HH:mm'))
 
 export default {
@@ -114,9 +115,9 @@ export default {
                 //此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，
                 //如需ajax上传可参考https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_handler
                 images_upload_handler: (blobInfo, success, failure) => {
-                    const img = 'data:image/jpeg;base64,' + blobInfo.base64()
-                    success(img)
-                    // this.handleImgUpload(blobInfo, success, failure)
+                    // const img = 'data:image/jpeg;base64,' + blobInfo.base64()
+                    // success(img)
+                    this.handleImgUpload(blobInfo, success, failure)
                 }
             },
         }
@@ -215,8 +216,9 @@ export default {
         handleImgUpload (blobInfo, success, failure) {
             let formdata = new FormData()
             formdata.set('upload_file', blobInfo.blob())
-            axios.post('/api/upload', formdata).then(res => {
-                success(res.data.data.src)
+            formdata.set('content_type', 'tutorials')
+            uploadimg(formdata).then(res => {
+                success(res.data.url)
             }).catch(res => {
                 failure('error')
             })

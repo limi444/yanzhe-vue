@@ -53,6 +53,7 @@
             updateArticleData () {
                 // 如果存在articleId，就获取文章数据进行更新
                 if (this.articleId) {
+                    console.log(this.article)
                     updateArticle(this.article).then((response) => {
                         // this.articleData = response.data
                         var type = this.$route.matched[0].path

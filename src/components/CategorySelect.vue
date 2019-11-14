@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { getCategory } from '../api/api'
+import { getTutorialsCategory, getBlogsCategory, getForumsCategory } from '../api/api'
 export default {
   name: 'Category.vue',
   props: {
@@ -61,15 +61,40 @@ export default {
       this.$emit('selectCategoryhandle', this.categoryId)
     },
     getTotalCategory () { // 获取菜单
-      getCategory({
-        params: {}
-      }).then((response) => {
-        console.log(response)
-        this.categoryData1List = response.data
-      })
-        .catch(function (error) {
-          console.log(error)
+      var site_type = this.$route.matched[0].path
+      if (site_type === '/blogs') {
+        getBlogsCategory({
+          params: {}
+        }).then((response) => {
+          console.log(response)
+          this.categoryData1List = response.data
         })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
+      if (site_type === '/forums') {
+        getForumsCategory({
+          params: {}
+        }).then((response) => {
+          console.log(response)
+          this.categoryData1List = response.data
+        })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
+      if (site_type === '/tutorials') {
+        getTutorialsCategory({
+          params: {}
+        }).then((response) => {
+          console.log(response)
+          this.categoryData1List = response.data
+        })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   },
   created () {

@@ -226,7 +226,7 @@ export default {
   box-sizing:border-box;
   -moz-box-sizing:border-box; /* Firefox */
   -webkit-box-sizing:border-box; /* Safari */
-  width:45%;
+  width:40%;
   min-height: inherit;
   float:left;
   border-radius: 10px;
@@ -234,7 +234,7 @@ export default {
 }
 .content {
   margin: 0;
-  min-width: 53%;
+  max-width: 500px;
   display: flex;
   /*沿垂直主轴让元素从上向下排列*/
   flex-direction: column;
