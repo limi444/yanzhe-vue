@@ -1,6 +1,6 @@
 <template>
   <div class="list" id="threadlist" style="position: relative;">
-    <div id="post_list" class="post_list" v-for="post in postList">
+    <div id="post_list" class="post_list" v-for="post in listData">
       <!-- <a href="{{ post.get_absolute_url }}" title=""><img src="{{ post.author.avatar }}"></a> -->
       <h3><router-link :to="'/forums/detail/' + post.id" class="title" rel="bookmark">{{post.title}}</router-link>
       </h3>
@@ -16,17 +16,21 @@
         <a href="" target="_blank">{{ post.comment_nums }}/{{ post.view_times }}--- {{post.column}}</a>
       </div>
     </div>
+    <Pagination class="pagination" pre-text="上页" next-text="下页" end-show="false" :page="curPage" :total-page='totalPage' @pagefn="pagefn"></Pagination>
   </div>
 </template>
 
 <script>
-import {listForumsNote} from '../../api/api'
+import {listNote} from '../../api/api'
+import Pagination from '../../components/Pagination'
 
 export default {
   name: 'Index',
   data () {
     return {
-      postList: [
+      proNum: 0, // 商品数量
+      curPage: 1, // 当前页码
+      listData: [
         // {title: 'title1', auther: 'cml', created_at: '2019-10-10 23:21', get_read_num: 12,},
         // {title: 'title2', auther: 'cml', created_at: '2019-10-10 23:21', get_read_num: 12,},
         // {title: 'title3', auther: 'cml', created_at: '2019-10-10 23:21', get_read_num: 12,},
@@ -34,16 +38,40 @@ export default {
       ]
     }
   },
-  methods: {
-    getListData () {
-      listForumsNote({}).then((response) => {
-        this.postList = response.data
-      })
+  components: {
+    'Pagination': Pagination,
+  },
+  computed: {
+    totalPage(){
+      return  Math.ceil(this.proNum/12)
     }
+  },
+  methods: {
+    pagefn(value){//点击分页
+      this.curPage = value.page;
+      this.getListNote()
+    },
+    getListNote () {
+      this.categoryId = this.$route.params.categoryId
+      listNote({
+        page: this.curPage, //当前页码
+        top_category: this.categoryId
+      })
+        .then((response) => {
+        console.log(response.data.results)
+        this.listData = response.data.results
+        this.proNum = response.data.count
+      })
+    },
+    // getListData () {
+    //   listNote({}).then((response) => {
+    //     this.postList = response.data
+    //   })
+    // }
   },
   created () {
     // alert('进入forums index')
-    this.getListData()
+    this.getListNote()
   }
 }
 </script>
@@ -94,4 +122,17 @@ export default {
   span {
     color: #eeeeee;
   }
+
+.pagination{
+  width: 400px;
+  /*把元素变成定位元素*/
+  /*position:absolute;*/
+  /*设置元素的定位位置，距离上、下、左、右都为0*/
+  left:0;
+  right:0;
+  /*top:0;*/
+  /*bottom:0;*/
+  /*设置元素的margin样式值为 auto*/
+  margin:auto;
+}
 </style>

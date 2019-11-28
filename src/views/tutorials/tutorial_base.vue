@@ -3,11 +3,8 @@
     <div class="header">
       <tutorial-header></tutorial-header>
     </div>
-
-    <div class="container">
-      <tutorial-sidebar></tutorial-sidebar>
-      <router-view name = "main"></router-view>
-    </div>
+      
+    <router-view name = "main" id="main"></router-view>
 
     <div class="footer">
       <tutorial-footer></tutorial-footer>
@@ -18,7 +15,6 @@
 
 <script>
 import tutorialHeader from './tutorial_header'
-import tutorialSidebar from './tutorial_sidebar'
 import tutorialFooter from '../../components/Footer'
 
 
@@ -32,7 +28,6 @@ export default {
   },
   components: {
     tutorialHeader,
-    tutorialSidebar,
     tutorialFooter
   }
 }
@@ -40,7 +35,9 @@ export default {
 
 <style scoped>
 .tutorials{
-  min-width: 680px;
+  /*min-width: 680px;*/
+  min-width:47.5rem;
+  max-width:66.25rem;
   margin: 0 auto;
   /*position: relative;*/
 }
@@ -48,23 +45,9 @@ export default {
   position: relative;
   /*left: 0;*/
   /*top: 0;*/
-
-}
-.container{
-  width: 100%;
-  height: 100%;
-  /*margin: 100px auto;*/
-  /*border: 3px dashed red;*/
-  display: inline-block;
-  /*position: relative;*/
-  /*background: #eeeeee url("../../static/images/tutorials/circuit.png") top repeat-x;*/
 }
 .main{
-  width: auto;
-  margin-left: 250px;
-  /*border: 3px solid green;*/
-  position: relative;
-  /*float: left;*/
+  width: 100%;
 }
 .footer{
   /*float: bottom;*/

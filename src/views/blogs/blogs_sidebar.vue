@@ -64,9 +64,10 @@
       },
       getRecommendData () {
         listBlogsArticle({
-
+          recommend:true
         })
           .then((response) => {
+            console.log(response.data)
             this.recommendList = response.data
           })
           .catch((error) => {
@@ -75,9 +76,10 @@
       },
       getRankingData () {
         listBlogsArticle({
-
+          collect:true
         })
           .then((response) => {
+            console.log(response.data)
             this.rankingList = response.data
           })
           .catch((error) => {
@@ -87,6 +89,8 @@
     },
     created () {
       this.getWiseWordData()
+      this.getRankingData()
+      this.getRecommendData()
     }
   }
 </script>

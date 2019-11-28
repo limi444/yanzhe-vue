@@ -1,9 +1,9 @@
 <template>
   <div id="markdown">
     <!-- Main pane -->
-    <section class="content box">
-      <div class="edit-form">
-        <fieldset class="module aligned ">
+    <!-- <section class="content box"> -->
+      <div class="edit-form box">
+        <fieldset>
           <div class="form-row field-title">
             <div>
               <label class="required" for="id_title">标题:</label>
@@ -50,14 +50,8 @@
             </span>
           </div>
         </fieldset>
-
-<!--        <div class="submit-row">-->
-<!--          <button @click="updateArticleData" title="_save">保存</button>-->
-<!--          <button @click="removeNote" title="_addanother">草稿</button>-->
-<!--          <button @click="removeNote" title="_continue">保存并增加另一个</button>-->
-<!--        </div>-->
       </div>
-    </section>
+    <!-- </section> -->
 
     <!-- Preview pane -->
     <aside class="preview box">
@@ -198,24 +192,12 @@ export default {
 
 <style scoped>
 
-/*#markdown > * {*/
-/*  margin: 10px;*/
-/*  float: left;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  !*width: 150px;*!*/
-/*  min-height: 500px;*/
-/*  border: 4px solid red;*/
-/*  !*> * {*!*/
-/*  !*  flex: auto 0 0;*!*/
-/*  !*}*!*/
-/*  }*/
-
 #markdown {
-  margin-top: 10px;
+  margin: 10px 0;
   align-items : flex-end;
-  /*width: auto;*/
-  min-width: 900px;
+  width: auto;
+  /*border: 2px solid red;*/
+  /*min-width: 900px;*/
   min-height: 800px;
   /*沿水平主轴让元素从左向右排列*/
   /*flex-direction:row;*/
@@ -223,56 +205,51 @@ export default {
 
 .box {
   border: solid 3px #cccccc;
-  box-sizing:border-box;
-  -moz-box-sizing:border-box; /* Firefox */
-  -webkit-box-sizing:border-box; /* Safari */
-  width:40%;
-  min-height: inherit;
-  float:left;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+  width: 50%;
+  min-height: 800px;
+  float: left;
   border-radius: 10px;
-  background:#fefefe url(../../static/images/tutorials/post_bg.gif) top repeat-x;
+  background: #fefefe url(../../static/images/tutorials/post_bg.gif) top repeat-x;
 }
-.content {
+.edit-form {
   margin: 0;
-  max-width: 500px;
   display: flex;
   /*沿垂直主轴让元素从上向下排列*/
   flex-direction: column;
   /*border: 2px solid red;*/
 }
-.edit-form {
-  min-height: inherit;
-  /*height: 750px;*/
-  /*border: 2px solid rebeccapurple;*/
-}
+
 .preview {
-  min-height: inherit;
-  padding: 10px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  /*height: 300px;*/
-  flex: 1 1 auto;
-  /*overflow: scroll;*/
-  border: solid 5px #cccccc;
+  /*height: 600px;*/
+  /*height: 700px;*/
+  overflow: auto;
+  border: solid 3px #cccccc;
   border-radius: 10px;
 }
 .preview-content {
-  min-height: inherit;
+  height: 750px;
+  padding: 10px;
+  text-align: left;
+  display: block;
   overflow: auto;
-  /*margin-top: 1420px;*/
-  /*border: 2px solid rebeccapurple;*/
+  /*white-space:nowrap;  /*强制文字在同一行显示*/
+  /*word-wrap: break-word;*/
 }
 fieldset {
-  min-height: inherit;
-  margin: 2px 0;
+  height: inherit;
+  width: 96%;
+  margin: 2px;
+  border: 2px;
   border-radius: 10px;
-  padding: 5px 10px;
+  padding: 2px;
   text-align: left;
   /*min-height: 95%;*/
 }
 .field-content {
-  height: 700px;
+  height: 680px;
   margin: 2px 0;
 
 }

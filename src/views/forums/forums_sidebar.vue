@@ -3,12 +3,27 @@
     <div class="sidebox">
       <h1>热门版块</h1>
       <ul class="sidemenu">
-        <li><a href="" >{{column.name}}</a></li>
+        <li class="category1" v-for="(cate1,index) in allMenuLabel" :key="cate1.id" >
+          <a @click="clickCategory1(cate1, index)" @dblclick="dblclickArticleData(cate1.id)">{{cate1.name}}</a>
+          <ul class="child_menu" v-show="showAllmenu1 === index">
+            <li class="category2" v-for="(cate2,ind) in cate1.sub_category" :key="cate2.id" >
+              <div class="J_subView" >
+                <dl>
+                  <dt><a @click="clickCategory2(cate2, ind)" @dblclick="dblclickArticleData(cate2.id)">{{cate2.name}}</a></dt>
+                  <dd  v-show="showAllmenu2 === ind" v-for="cate3 in cate2.sub_category" :key="cate3.id">
+                    <a @dblclick="dblclickArticleData(cate3.id) ">{{cate3.name}}</a>
+                  </dd>
+                </dl>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </li>
       </ul>
       <div class="topbo">
         <!-- Block Square -->
         <div class="block_square">
-          <a href="{% url 'forum:column_all' %}" class="bnor">所有板块</a>
+          <a href="/forums/index/" class="bnor">所有板块</a>
         </div>
         <!-- End -->
       </div>
@@ -16,12 +31,11 @@
 
     <div class="sidebox">
       <h1>热点帖子</h1>
-      <ul class="sidemenu">
-        {% for hot_post in foruminfo.hot_posts %}
-        <li>
-          <a class="title" href="">{{ hot_post.title }}</a>
-        </li>
-        {% endfor %}
+      <ul class="sidemenu" v-if="recommendList">
+        <li v-for="artRecom in recommendList"><a class="title" href="">{{artRecom.title.substring(0,20)}}</a></li>
+      </ul>
+      <ul class="sidemenu" v-else>
+        <li>暂时没有热门文章</li>
       </ul>
     </div>
 
@@ -39,18 +53,18 @@
 
     <div class="sidebox">
       <h1>最近评论</h1>
-      <ul>
-        {% for last_comment in last_comments %}
-        <li>
-          <a href="">{{ last_comment.owner }}:{{ last_comment.text }}</a>
-        </li>
-        {% endfor %}
+      <ul class="sidemenu" v-if="rankingList">
+        <li v-for="artRank in rankingList"><a class="title" href="">{{artRank.title.substring(0,10)}}</a></li>
+      </ul>
+      <ul class="sidemenu" v-else>
+        <li>暂时没有排行文章</li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+  import { getTutorialsCategory, getBlogsCategory, getForumsCategory } from '../../api/api'
   export default {
     name: 'forums_sidebar',
     data () {
@@ -59,21 +73,107 @@
         hot_post: {},
         foruminfo: {},
         last_comment: {},
+        allMenuLabel: [],
+        showAllmenu1: false, // 菜单显示控制
+        showAllmenu2: false, // 菜单显示控制
+        recommendList: [
+          {id:1, title: '暂无推荐文章'},
+          {id:1, title: '暂无推荐文章'},
+        ],
+        rankingList: [
+          {id:1, title: '暂无推荐文章'},
+          {id:1, title: '暂无推荐文章'},
+        ],
+        wiseword: {
+          content: '',
+          auther: 'cml'
+        }
         // user: {
         //   username: 'cml'
         // }
       }
     },
     methods: {
-      getHotSearch () { // 获取热搜
-        getHotSearch()
+      // 双击获取分类文章数据
+      dblclickArticleData (cateid) {
+        this.$router.push({name: 'tutorialsListArticle', params: { categoryId: cateid }})
+      },
+      // 单击获取类别下的子类信息描述
+      clickCategory1 (cateData, index) {
+        this.showAllmenu1 = index
+        this.$emit('selectedHandle', cateData.sub_category)
+      },
+      clickCategory2 (cateData, index) {
+        this.showAllmenu2 = index
+        this.$emit('selectedHandle', cateData.sub_category)
+      },
+      getWiseWordData () {
+        getWiseWord({}).then((response) => {
+          this.wiseword = response.data[0]
+        }).catch((error) => {
+          console.log(error.data)
+        })
+      },
+      getRecommendData () {
+        listArticle({recommend:true})
           .then((response) => {
-            this.hotSearch = response.data
+            this.recommendList = response.data
           })
-          .catch(function (error) {
-            console.log(error)
+          .catch((error) => {
+            console.log(error.data)
           })
       },
+      getRankingData () {
+        listArticle({collect:true})
+          .then((response) => {
+            this.rankingList = response.data 
+          })
+          .catch((error) => {
+            console.log(error.data)
+          })
+      },
+      getMenu () { // 获取菜单
+        var site_type = this.$route.matched[0].path
+        if (site_type === '/blogs') {
+          getBlogsCategory({
+              params: {}
+          }).then((response) => {
+              console.log(response.data)
+              this.allMenuLabel = response.data
+              // this.selectedData = response.data
+          })
+          .catch(function (error) {
+              console.log(error)
+          })
+        }
+        if (site_type === '/forums') {
+          getForumsCategory({
+              params: {}
+          }).then((response) => {
+              console.log(response.data)
+              this.allMenuLabel = response.data
+              // this.selectedData = response.data
+          })
+          .catch(function (error) {
+              console.log(error)
+          })
+        }
+        if (site_type === '/tutorials') {
+          getTutorialsCategory({
+              params: {}
+          }).then((response) => {
+              console.log(response.data)
+              this.allMenuLabel = response.data
+              // this.selectedData = response.data
+          })
+          .catch(function (error) {
+              console.log(error)
+          })
+        }
+      }
+    },
+    created () {
+      this.getMenu()
     }
   }
 </script>

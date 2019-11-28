@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <tutorial-sidebar></tutorial-sidebar>
+    <forums-sidebar></forums-sidebar>
     <div class="content">
       <!--    <h2>{{ selectData }}</h2>-->
       <div class="lists" v-for="article in listData" :key="article.id">
   <!--      <a @click="getCategoryData({id: cate.id})">{{ cate.title }}</a>-->
-        <router-link :to="'/tutorials/detail/' + article.id" class="article-link">{{ article.title }}</router-link>
+        <router-link :to="'/forums/detail/' + article.id" class="article-link">{{ article.title }}</router-link>
         <div class="clr"></div>
   <!--      <p>{{ article.descri }}</p>-->
       </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import tutorialSidebar from './tutorial_sidebar'
+import forumsSidebar from './forums_sidebar'
 import Pagination from '../../components/Pagination'
 import {listArticle} from '../../api/api'
 
@@ -51,9 +51,9 @@ export default {
     'tutorial-sidebar': tutorialSidebar
   },
   methods: {
-    getListArticle () {
+    getListNote () {
       this.categoryId = this.$route.params.categoryId
-      listArticle({
+      listNote({
         page: this.curPage, //当前页码
         top_category: this.categoryId
       })
@@ -68,12 +68,12 @@ export default {
     },
     pagefn(value){//点击分页
       this.curPage = value.page;
-      this.getListArticle()
+      this.getListNote()
     }
   },
   created () {
     // this.getCategoryData({})
-    this.getListArticle()
+    this.getListNote()
   }
 }
 </script>

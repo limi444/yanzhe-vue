@@ -33,7 +33,7 @@
 
 <script>
   import marked from 'marked'
-import {getBlogsArticle, getForumsNote, getArticle} from '../api/api'
+import {getPost, getNote, getArticle} from '../api/api'
 
 export default {
   name: 'detail',
@@ -53,10 +53,10 @@ export default {
     }
   },
   methods: {
-    getArticleData (id) {
+    getData (id) {
       var site_type = this.$route.matched[0].path
       if (site_type==='/blogs') {
-        getBlogsArticle(id).then((response) => {
+        getPost(id).then((response) => {
           // console.log(response.data)
           this.articleData = response.data.result
           this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
@@ -67,7 +67,7 @@ export default {
           })
       }
       if (site_type==='/forums') {
-        getForumsNote(id).then((response) => {
+        getNote(id).then((response) => {
           console.log(response.data)
           this.articleData = response.data.result
           this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
@@ -107,7 +107,7 @@ export default {
   },
   created () {
     this.articleId = this.$route.params.articleId
-    this.getArticleData(this.articleId)
+    this.getData(this.articleId)
   },
   watch: {
     '$route' (to, from) {

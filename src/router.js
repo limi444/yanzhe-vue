@@ -11,6 +11,7 @@ import blogsIndex from './views/blogs/Index'
 import tutorialBase from './views/tutorials/tutorial_base'
 import tutorialIndex from './views/tutorials/Index'
 import tutorialList from './views/tutorials/List'
+import tutorialDetail from './views/tutorials/Detail'
 
 import userInfo from './views/users/userInfo'
 import Login from './views/users/Login'
@@ -109,7 +110,7 @@ export default new Router({
           name: 'tutorialsDetail',
           // props: true,
           components: {
-            main: Detail
+            main: tutorialDetail
           }
         },
         {

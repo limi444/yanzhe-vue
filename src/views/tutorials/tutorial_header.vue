@@ -40,11 +40,17 @@ export default {
 </script>
 <style scoped>
 .headers {
-  background-color: #EEEEEE;
-  border: 2px solid #42b983;
-  /*border: 2px solid #aaaaaa;*/
-  border-radius: 60px 10px 10px 60px/50px 10px 10px 50px;
-  /*min-width: 800px;*/
+  background-color: #eee;
+  /*border: 2px solid #42b983;*/
+  border: 1px solid #aaaaaa;
+  border-radius: 60px 10px 10px 60px/10px 10px 10px 10px;
+  
+  /*position: fixed;
+   top:0;
+       max-width: 1060px;
+    min-width: 680px;
+    width:100%;*/
+
   height: 50px;
   font-size: 14px;
   font-family: Poppins;
@@ -84,6 +90,7 @@ export default {
 }
 
 .header-search {
+
   margin: 10px auto;
   /*border: 2px solid #68b21d;*/
   position: absolute;
@@ -103,14 +110,16 @@ export default {
   margin:0;
   border-radius: 3px;
   font:normal 15px Arial, Helvetica, sans-serif;
+  background: #eeeeee;
   color:#767676;
 }
 .header-search form .button {
-  background-color: #aaaaaa;
+  background-color: #cccccc;
   color: white;
   width: 30px;
   height: 30px;
-  border-radius: 8px;
+  /*display: inline-block;*/
+  border-radius: 5px;
   margin:0;
   padding:0;
   border:0;

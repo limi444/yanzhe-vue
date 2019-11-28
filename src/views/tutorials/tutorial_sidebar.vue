@@ -1,13 +1,17 @@
 <template>
   <div class="sidebar">
     <div class="gadget">
+      <a v-on:click="getWiseWordData"><h3>Wise Words</h3></a>
+      <div class="clr"></div>
+      <p class="wise">   <img src="../../static/images/tutorials/test_1.gif" alt="image" width="18" height="17" /> <em v-html="wiseword.content"> </em><img src="../../static/images/tutorials/test_2.gif" alt="image" width="18" height="17" /></p>
+      <p class="ww-author" style="float:right;"><strong>{{wiseword.author}}</strong></p>
+    </div>
+    <div class="gadget">
       <h3><a href="/tutorials/index" style="font-weight:bold;color: #2c3e50">INDEX</a></h3>
       <div class="clr"></div>
       <ul class="parent_menu">
-<!--        <li class="parent_category" v-for="cate1 in allMenuLabel" :key="cate1.id" @mouseover="overAllmenu" @mouseout="outAllmenu">-->
         <li class="category1" v-for="(cate1,index) in allMenuLabel" :key="cate1.id" >
           <a @click="clickCategory1(cate1, index)" @dblclick="dblclickArticleData(cate1.id)">{{cate1.name}}</a>
-<!--          <router-link :to="'/tutorials/category/'+cate1.id" style="font-weight:bold;" @dblclick="getCategoryData({id: cate1.id})">{{cate1.name}}</router-link>-->
           <ul class="child_menu" v-show="showAllmenu1 === index">
             <li class="category2" v-for="(cate2,ind) in cate1.sub_category" :key="cate2.id" >
               <div class="J_subView" >
@@ -27,15 +31,15 @@
     <div class="gadget">
       <h3><span>精华推荐</span></h3>
       <div class="clr"></div>
-      <ul class="ex_menu" v-if="recommendList">
-        <li v-for="artRecom in recommendList"><a class="title" href="">{{artRecom.title.substring(0,10)}}</a></li>
+      <ul class="ex_menu recommend" v-if="recommendList">
+        <li v-for="artRecom in recommendList"><a class="title" href="">{{artRecom.title.substring(0,20)}}</a></li>
       </ul>
       <ul class="ex_menu" v-else>
         <li>暂时没有热门文章</li>
       </ul>
     </div>
     <div class="gadget">
-      <h3><span>阅读排行</span></h3>
+      <h3><span>收藏排行</span></h3>
       <div class="clr"></div>
       <ul class="ex_menu" v-if="rankingList">
         <li v-for="artRank in rankingList"><a class="title" href="">{{artRank.title.substring(0,10)}}</a></li>
@@ -43,12 +47,6 @@
       <ul class="ex_menu" v-else>
         <li>暂时没有排行文章</li>
       </ul>
-    </div>
-    <div class="gadget">
-      <a v-on:click="getWiseWordData"><h3>Wise Words</h3></a>
-      <div class="clr"></div>
-      <p class="wise">   <img src="../../static/images/tutorials/test_1.gif" alt="image" width="18" height="17" /> <em v-html="wiseword.content"> </em><img src="../../static/images/tutorials/test_2.gif" alt="image" width="18" height="17" /></p>
-      <p class="ww-author" style="float:right;"><strong>{{wiseword.author}}</strong></p>
     </div>
   </div>
 </template>
@@ -70,14 +68,17 @@ export default {
       // showChildrenMenu: -1 // 菜单显示控制
       // showShopCar:false, // 购物车显示控制
       // isShowVip:false,
-      contentData: [],
+      // contentData: [],
       recommendList: [
-        {id:1, title: '暂无推荐文章暂无推荐文章暂无推荐文章'},
+        {id:1, title: '暂无推荐文章'},
         {id:1, title: '暂无推荐文章'},
       ],
-      rankingList: '',
+      rankingList: [
+        {id:1, title: '暂无推荐文章'},
+        {id:1, title: '暂无推荐文章'},
+      ],
       wiseword: {
-        content: '暂无内容',
+        content: '',
         auther: 'cml'
       }
     }
@@ -110,7 +111,7 @@ export default {
       })
     },
     getRecommendData () {
-      listArticle({})
+      listArticle({recommend:true})
         .then((response) => {
           this.recommendList = response.data
         })
@@ -119,11 +120,9 @@ export default {
         })
     },
     getRankingData () {
-      listArticle({
-
-      })
+      listArticle({collect:true})
         .then((response) => {
-          this.rankingList = response.data
+          this.rankingList = response.data 
         })
         .catch((error) => {
           console.log(error.data)
@@ -172,7 +171,8 @@ export default {
   created () {
     this.getWiseWordData() // 获取鸡汤
     this.getMenu() // 获取菜单
-    // this.getHotSearch() // 获取热词
+    this.getRecommendData() // 获取热词
+    this.getRankingData() // 获取热词
     // 更新store数据
     // this.$store.dispatch('setShopList') // 获取购物车数据
   }
@@ -247,5 +247,9 @@ dd {
 }
 em {
   font-size: 10px;
+}
+
+.recommend {
+  font-size: 8px;
 }
 </style>
