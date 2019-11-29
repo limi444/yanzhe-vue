@@ -275,7 +275,7 @@ textarea {
 }
 
 input {
-  width: 400px;
+  width: 80%;
   border: solid 1px #ade2ca;
   border-radius: 3px;
   padding: 2px 10px;

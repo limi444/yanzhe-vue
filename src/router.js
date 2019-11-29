@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 
 import forumsBase from './views/forums/forums_base'
 import forumsIndex from './views/forums/Index'
+import forumsList from './views/forums/List'
 
 import blogsBase from './views/blogs/blogs_base'
 import blogsIndex from './views/blogs/Index'
@@ -177,7 +178,7 @@ export default new Router({
           path: 'create',
           name: 'blogsCreate',
           components: {
-            main: blogsIndex
+            main: Edit
           }
         },
         // {
@@ -201,7 +202,7 @@ export default new Router({
           name: 'blogsUpdate',
           props: true,
           components: {
-            main: blogsIndex
+            main: Edit
           }
         },
         {
@@ -230,7 +231,7 @@ export default new Router({
           path: 'category',
           name: 'forumsCategory',
           components: {
-            main: blogsIndex
+            main: forumsIndex
           }
         },
         {
@@ -238,14 +239,14 @@ export default new Router({
           name: 'forumsCategoryList',
           props: true,
           components: {
-            main: blogsIndex
+            main: forumsIndex
           }
         },
         {
           path: 'list',
           name: 'forumsList',
           components: {
-            main: blogsIndex
+            main: forumsIndex
           }
         },
         {
@@ -253,7 +254,7 @@ export default new Router({
           name: 'forumsListArticle',
           props: true,
           components: {
-            main: blogsIndex
+            main: forumsList
           }
         },
         {
@@ -276,7 +277,7 @@ export default new Router({
           name: 'forumsUpdate',
           props: true,
           components: {
-            main: blogsIndex
+            main: Edit
           }
         },
         {

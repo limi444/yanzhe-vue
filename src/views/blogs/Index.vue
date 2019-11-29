@@ -22,26 +22,26 @@
 </template>
 
 <script>
-import {listBlogsArticle, listBlogsCategory} from '../../api/api'
+import {listPost, listBlogsCategory} from '../../api/api'
 export default {
 name: 'Index',
 data () {
   return {
     categoryList: [
-      {id: 1, name: 'cate1'},
-      {id: 2, name: 'cate2'},
+      {id: 1, name: ''},
+      {id: 2, name: ''},
     ],
     articleList: [
-      {title: 'title11', category: {id: 1, name: 'cate1'}},
-      {title: 'title12', category: {id: 1, name: 'cate1'}},
-      {title: 'title21', category: {id: 2, name: 'cate2'}},
-      {title: 'title22', category: {id: 2, name: 'cate2'}},
+      // {title: 'title11', category: {id: 1, name: 'cate1'}},
+      // {title: 'title12', category: {id: 1, name: 'cate1'}},
+      // {title: 'title21', category: {id: 2, name: 'cate2'}},
+      // {title: 'title22', category: {id: 2, name: 'cate2'}},
     ]
   }
 },
 methods: {
   getListData () {
-    listBlogsArticle({}).then((response) => {
+    listPost({}).then((response) => {
       console.log(response.data)
       this.articleList = response.data
     })

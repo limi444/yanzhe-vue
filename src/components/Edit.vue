@@ -9,7 +9,7 @@
         <div class="submit-row">
             <button @click="updateData" title="save">保存</button>
             <button @click="" title="addanother">草稿</button>
-            <button @click="" title="continue">保存并增加另一个</button>
+            <!-- <button @click="" title="continue">保存并增加另一个</button> -->
         </div>
     </div>
 </template>

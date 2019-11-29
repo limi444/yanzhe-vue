@@ -8,7 +8,8 @@
       </div>
       <form method="get" action="{% url 'blog:search' %}" id="search">
         <input class="search" type="text" name="kw" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" />
-        <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="../../static/images/blogs/search.png" alt="search" title="search" />
+        <input name="search" class="button" value="Search" type="submit"/>
+       <!--  <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="../../static/images/blogs/search.png" alt="search" title="search" /> -->
       </form>
     </div>
     <div id="navbar">
@@ -108,6 +109,13 @@
     width:192px;
     color: #bbb;
     background:#5E5E5E;
+  }
+  .button {
+    height: 28px;
+    border-radius: 7px 7px 7px 7px;
+    float: right;
+    border: 0; 
+    margin: 21px 0 0 0;
   }
 
 

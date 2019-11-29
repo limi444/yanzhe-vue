@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="blogs">
     <div id="header">
       <blogs-header></blogs-header>
     </div>
@@ -32,9 +32,11 @@ export default {
 </script>
 
 <style scoped>
-  #main{
-    max-width: 1060px;
-    min-width: 680px;
+  #blogs{
+    min-width:47.5rem;
+    max-width:66.25rem;
+   /* max-width: 1060px;
+    min-width: 680px;*/
     margin: 0 auto;
     /*position: relative;*/
   }
@@ -104,11 +106,11 @@ export default {
   }
   #sidebar{
     width: 25%;
-    margin: 0 10px;
+    margin: 0 1px;
   }
   #content{
-    width: 70%;
-    margin: 0 10px;
+    width: 74%;
+    margin: 0 1px;
   }
 
   footer {

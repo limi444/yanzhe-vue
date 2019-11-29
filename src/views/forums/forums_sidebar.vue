@@ -1,6 +1,12 @@
 <template>
   <div id="sidebar" >
     <div class="sidebox">
+      <a v-on:click="getWiseWordData"><h3>老鸭粉丝汤~</h3></a>
+      <div class="clr"></div>
+      <p class="wise" style="color: green">   <em v-html="wiseword.content"> </em></p>
+      <!-- <p class="ww-author" style="float:right;"><strong>{{wiseword.author}}</strong></p> -->
+    </div>
+    <div class="sidebox">
       <h1>热门版块</h1>
       <ul class="sidemenu">
         <li class="category1" v-for="(cate1,index) in allMenuLabel" :key="cate1.id" >
@@ -39,7 +45,7 @@
       </ul>
     </div>
 
-    <div class="sidebox">
+    <!-- <div class="sidebox">
       <h1>论坛统计</h1>
       <ul>
         <li>在线人数: {% get_online_ips_count  %}</li>
@@ -49,7 +55,7 @@
         <li>昨日: {{ foruminfo.lastday_post_number }}</li>
 
       </ul>
-    </div>
+    </div> -->
 
     <div class="sidebox">
       <h1>最近评论</h1>
@@ -64,6 +70,7 @@
 </template>
 
 <script>
+  import { getWiseWord, listNote } from '../../api/api'
   import { getTutorialsCategory, getBlogsCategory, getForumsCategory } from '../../api/api'
   export default {
     name: 'forums_sidebar',
@@ -85,8 +92,8 @@
           {id:1, title: '暂无推荐文章'},
         ],
         wiseword: {
-          content: '',
-          auther: 'cml'
+          content: '老鸭粉丝汤老鸭粉丝汤老鸭粉丝汤老鸭粉丝汤老鸭粉丝汤',
+          author: 'cml'
         }
         // user: {
         //   username: 'cml'
@@ -115,16 +122,17 @@
         })
       },
       getRecommendData () {
-        listArticle({recommend:true})
+        listNote({recommend:true})
           .then((response) => {
             this.recommendList = response.data
+            console.log(this.recommendList)
           })
           .catch((error) => {
             console.log(error.data)
           })
       },
       getRankingData () {
-        listArticle({collect:true})
+        listNote({collect:true})
           .then((response) => {
             this.rankingList = response.data 
           })
@@ -173,7 +181,10 @@
       }
     },
     created () {
+      this.getWiseWordData() // 获取鸡汤
       this.getMenu()
+      this.getRecommendData() // 获取热词
+      this.getRankingData() // 获取热词
     }
   }
 </script>

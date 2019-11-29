@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import {getWiseWord, listBlogsArticle} from '../../api/api'
+  import {getWiseWord, listPost} from '../../api/api'
 
   export default {
     name: 'blogs_sidebar',
@@ -63,7 +63,7 @@
         })
       },
       getRecommendData () {
-        listBlogsArticle({
+        listPost({
           recommend:true
         })
           .then((response) => {
@@ -75,7 +75,7 @@
           })
       },
       getRankingData () {
-        listBlogsArticle({
+        listPost({
           collect:true
         })
           .then((response) => {
@@ -98,7 +98,7 @@
 <style scoped>
   #sidebar_container {
     float: right;
-    width: 280px;
+    width: 250px;
   }
 
   .sidebar {

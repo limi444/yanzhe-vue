@@ -48,7 +48,7 @@ export default {
   },
   components: {
     'Pagination': Pagination,
-    'tutorial-sidebar': tutorialSidebar
+    'forums-sidebar': forumsSidebar
   },
   methods: {
     getListNote () {
