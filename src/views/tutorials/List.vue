@@ -11,10 +11,7 @@
       </div>
 
       <div class="lists" v-if="!listData">
-        <h2>感谢您的关注！！！</h2>
-        <div class="clr"></div>
-        <p>此模块暂时没有内容哦！</p>
-        <p>感谢您的关注！！！</p>
+        <h2>感谢您的关注！暂无内容！</h2>
         <p><a @click="gohome">Read more </a></p>
       </div>
       <Pagination class="pagination" pre-text="上页" next-text="下页" end-show="false" :page="curPage" :total-page='totalPage' @pagefn="pagefn"></Pagination>
@@ -58,7 +55,7 @@ export default {
         top_category: this.categoryId
       })
         .then((response) => {
-        console.log(response.data.results)
+        console.log(response.data)
         this.listData = response.data.results
         this.proNum = response.data.count
       })

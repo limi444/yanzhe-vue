@@ -23,6 +23,7 @@ import FindPwd from './views/users/FindPwd'
 import Category from './components/CategorySelect'
 import Edit from './components/Edit'
 import Detail from './components/Detail'
+import HelloWorld from './components/HelloWorld'
 
 // import Comments from '../components/Comments'
 // import userInfo from '../views/users/userInfo'
@@ -45,18 +46,26 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: '*',
+      component: HelloWorld,
+      meta: {
+          title: '404未找到',
+      },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/',
+      name: 'home',
+      redirect: '/tutorials/index'
+      // component: tutorialBase
     },
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (about.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    // },
     {
       path: '/tutorials',
       // name: 'base',

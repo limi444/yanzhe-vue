@@ -3,7 +3,7 @@
     <tutorial-sidebar></tutorial-sidebar>
     <div class="content">
   <!--    <h2>{{ selectData }}</h2>-->
-      <div class="lists" v-for="cate in selectData" :key="cate.id">
+      <div class="lists" v-for="cate in categoryData" :key="cate.id">
         <h2><a @click="getCategoryData({id: cate.id})">
           <span>{{ cate.name }}</span>
         </a></h2>
@@ -11,7 +11,7 @@
         <p>{{ cate.desc }}</p>
       </div>
 
-      <div class="lists" v-if="!selectData">
+      <div class="lists" v-if="!categoryData">
         <h2>感谢您的关注！！！</h2>
         <div class="clr"></div>
         <p>此模块暂时没有内容哦！</p>
@@ -24,7 +24,7 @@
 
 <script>
 import tutorialSidebar from './tutorial_sidebar'
-import {getCategory} from '../../api/api'
+import {getTutorialsCategory} from '../../api/api'
 
 export default {
   name: 'index',
@@ -40,7 +40,7 @@ export default {
   
   methods: {
     getCategoryData (params) {
-      getCategory(params).then((response) => {
+      getTutorialsCategory(params).then((response) => {
         console.log(response.data)
         this.categoryData = response.data
       })
@@ -53,7 +53,7 @@ export default {
     }
   },
   created () {
-    // this.getCategoryData({})
+    this.getCategoryData({})
   }
 }
 </script>
