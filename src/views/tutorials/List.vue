@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <tutorial-sidebar></tutorial-sidebar>
+    <tutorial-sidebar v-bind:isMarkdown="false"></tutorial-sidebar>
     <div class="content">
       <!--    <h2>{{ selectData }}</h2>-->
       <div class="lists" v-for="article in listData" :key="article.id">
@@ -17,7 +17,7 @@
       <Pagination class="pagination" pre-text="上页" next-text="下页" end-show="false" :page="curPage" :total-page='totalPage' @pagefn="pagefn"></Pagination>
     </div>
   </div>
-  
+
 </template>
 
 <script>

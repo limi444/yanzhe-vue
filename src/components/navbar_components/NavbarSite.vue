@@ -66,16 +66,18 @@
     float: left;
     /*float: right;*/
     /*text-align: right;*/
+    font-size:18px;
     list-style: none;
     padding: 2px;
     border: 2px solid #cccccc;
     border-radius: 5px;
     margin-right: 5px;
+    background-color: #cccccc;
   }
   a {
     background-color: #cccccc;
     text-decoration: none;
-    color: #555;
+    color: #aaa;
   }
 
   a:hover {

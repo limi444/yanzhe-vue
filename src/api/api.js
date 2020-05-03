@@ -1,7 +1,9 @@
 import axios from 'axios'
-//
- let host = 'http://127.0.0.1:8000'
-// let host = 'http://119.29.97.152:8000'
+// Vue.prototype.$axios=axios;
+//那么在其他vue组件中就可以this.$axios调用使用
+
+// let host = 'http://127.0.0.1:8000'
+let host = 'http://119.29.97.152:8000'
 
 // 获取商品类别信息
 export const getTutorialsCategory = params => {
@@ -10,7 +12,7 @@ export const getTutorialsCategory = params => {
     } else {
       return axios.get(`${host}/api/tcategorys/`, params)
     }
-} 
+}
 
 export const getBlogssCategory = params => {
   	if ('id' in params) {
@@ -18,7 +20,7 @@ export const getBlogssCategory = params => {
     } else {
       return axios.get(`${host}/api/bcategorys/`, params)
     }
-} 
+}
 
 export const getForumsCategory = params => {
   	if ('id' in params) {
@@ -27,7 +29,7 @@ export const getForumsCategory = params => {
       return axios.get(`${host}/api/fcategorys/`, params)
     }
 }
-  
+
 
 export const getNavbar = params => { return axios.get(`${host}/api/navbars/`, { params: params }) }
 export const uploadimg = params => { return axios.post(`${host}/images/upload/`, params ) }

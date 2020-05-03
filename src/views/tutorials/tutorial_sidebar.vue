@@ -6,6 +6,7 @@
       <p class="wise">   <img src="../../static/images/tutorials/test_1.gif" alt="image" width="18" height="17" /> <em v-html="wiseword.content"> </em><img src="../../static/images/tutorials/test_2.gif" alt="image" width="18" height="17" /></p>
       <p class="ww-author" style="float:right;"><strong>{{wiseword.author}}</strong></p>
     </div>
+
     <div class="gadget">
       <h3><a href="/tutorials/index" style="font-weight:bold;color: #2c3e50">INDEX</a></h3>
       <div class="clr"></div>
@@ -83,12 +84,6 @@ export default {
       }
     }
   },
-  computed: {
-    // Data () {
-    //   this.allMenuLabel =
-    //   return
-    // }
-  },
   methods: {
     // 双击获取分类文章数据
     dblclickArticleData (cateid) {
@@ -122,7 +117,7 @@ export default {
     getRankingData () {
       listArticle({collect:true})
         .then((response) => {
-          this.rankingList = response.data 
+          this.rankingList = response.data
         })
         .catch((error) => {
           console.log(error.data)
@@ -134,7 +129,7 @@ export default {
         getBlogsCategory({
             params: {}
         }).then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             this.allMenuLabel = response.data
             // this.selectedData = response.data
         })
@@ -146,7 +141,7 @@ export default {
         getForumsCategory({
             params: {}
         }).then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             this.allMenuLabel = response.data
             // this.selectedData = response.data
         })
@@ -158,7 +153,7 @@ export default {
         getTutorialsCategory({
             params: {}
         }).then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             this.allMenuLabel = response.data
             // this.selectedData = response.data
         })
@@ -193,8 +188,8 @@ h3 {
   position: relative;
   margin:10px 10px;
   padding:10px 20px;
-  width:200px;
-  border:1px solid #d8d6d6;
+  width:180px;
+  /*border:1px solid #d8d6d6;*/
   border-radius: 5px;
   background:#fefefe url(../../static/images/tutorials/post_bg.gif) top repeat-x;
 }

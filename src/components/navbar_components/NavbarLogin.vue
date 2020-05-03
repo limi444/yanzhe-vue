@@ -42,6 +42,7 @@
     float: left;
     /*float: right;*/
     /*text-align: right;*/
+    font-size:18px;
     list-style: none;
     padding: 2px;
     border: 2px solid #cccccc;

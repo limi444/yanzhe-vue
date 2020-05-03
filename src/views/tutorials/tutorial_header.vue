@@ -40,10 +40,10 @@ export default {
 </script>
 <style scoped>
 .headers {
-  background-color: #eee;
+  /*background-color: #eee;*/
   /*border: 2px solid #42b983;*/
-  border: 1px solid #aaaaaa;
-  border-radius: 60px 10px 10px 60px/10px 10px 10px 10px;
+  /*border: 1px solid #aaaaaa;*/
+  /*border-radius: 60px 10px 10px 60px/10px 10px 10px 10px;*/
   
   /*position: fixed;
    top:0;

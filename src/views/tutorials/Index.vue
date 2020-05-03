@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <tutorial-sidebar></tutorial-sidebar>
+    <tutorial-sidebar v-bind:isMarkdown="false"></tutorial-sidebar>
+
     <div class="content">
   <!--    <h2>{{ selectData }}</h2>-->
       <div class="lists" v-for="cate in categoryData" :key="cate.id">
@@ -29,7 +30,8 @@ import {getTutorialsCategory} from '../../api/api'
 export default {
   name: 'index',
   components: {
-    'tutorial-sidebar': tutorialSidebar
+    'tutorial-sidebar': tutorialSidebar,
+      // 'MakeTitleMenu': MakeTitleMenu
   },
   data () {
     return {
@@ -37,7 +39,7 @@ export default {
       categoryData: []
     }
   },
-  
+
   methods: {
     getCategoryData (params) {
       getTutorialsCategory(params).then((response) => {
