@@ -36,12 +36,12 @@ export const uploadimg = params => { return axios.post(`${host}/images/upload/`,
 
 export const getWiseWord = params => { return axios.get(`${host}/api/wisewords/`, { params: params }) }
 // 博客文章
-export const getPost = articleId => { return axios.get(`${host}/api/blogs/${articleId}` + '/') }
-export const listPost = params => { return axios.get(`${host}/api/blogs/`, { params: params }) }
-export const createPost = params => { return axios.post(`${host}/api/blogs/`, params) }
-export const updatePost = params => { return axios.put(`${host}/api/blogs/` + params.id + '/', params) }
+// export const getPost = articleId => { return axios.get(`${host}/api/blogs/${articleId}` + '/') }
+// export const listPost = params => { return axios.get(`${host}/api/blogs/`, { params: params }) }
+// export const createPost = params => { return axios.post(`${host}/api/blogs/`, params) }
+// export const updatePost = params => { return axios.put(`${host}/api/blogs/` + params.id + '/', params) }
 
-export const listBlogsCategory = params => { return axios.get(`${host}/api/bcategorys/`, { params: params }) }
+// export const listBlogsCategory = params => { return axios.get(`${host}/api/bcategorys/`, { params: params }) }
 
 // 教程文章
 export const getArticle = articleId => { return axios.get(`${TutorialsHost}/api/articles/${articleId}` + '/') }
@@ -49,10 +49,10 @@ export const listArticle = params => { return axios.get(`${TutorialsHost}/api/ar
 export const createArticle = params => { return axios.post(`${TutorialsHost}/api/articles/`, params) }
 export const updateArticle = params => { return axios.put(`${TutorialsHost}/api/articles/` + params.id + '/', params) }
 // 论坛随笔
-export const getNote = articleId => { return axios.get(`${host}/api/forums/${articleId}` + '/') }
-export const listNote = params => { return axios.get(`${host}/api/forums/`, { params: params }) }
-export const createNote = params => { return axios.post(`${host}/api/forums/`, params) }
-export const updateNote = params => { return axios.put(`${host}/api/forums/` + params.id + '/', params) }
+// export const getNote = articleId => { return axios.get(`${host}/api/forums/${articleId}` + '/') }
+// export const listNote = params => { return axios.get(`${host}/api/forums/`, { params: params }) }
+// export const createNote = params => { return axios.post(`${host}/api/forums/`, params) }
+// export const updateNote = params => { return axios.put(`${host}/api/forums/` + params.id + '/', params) }
 
 // User
 export const getUserDetail = params => { return axios.get(`${host}/api/users/${userId}` + '/')}

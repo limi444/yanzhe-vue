@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
-import forumsBase from './views/forums/forums_base'
-import forumsIndex from './views/forums/Index'
-import forumsList from './views/forums/List'
+// import forumsBase from './views/forums/forums_base'
+// import forumsIndex from './views/forums/Index'
+// import forumsList from './views/forums/List'
 
-import blogsBase from './views/blogs/blogs_base'
-import blogsIndex from './views/blogs/Index'
+// import blogsBase from './views/blogs/blogs_base'
+// import blogsIndex from './views/blogs/Index'
 
 import tutorialBase from './views/tutorials/tutorial_base'
 import tutorialIndex from './views/tutorials/Index'
@@ -141,164 +141,164 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/blogs',
-      // name: 'base',
-      component: blogsBase,
-      children: [
-        {
-          path: 'index',
-          name: 'blogsIndex',
-          components: {
-            main: blogsIndex
-          }
-        },
-        {
-          path: 'category',
-          name: 'blogsCategory',
-          components: {
-            main: blogsIndex
-          }
-        },
-        {
-          path: 'category/:categoryId',
-          name: 'blogsCategoryList',
-          props: true,
-          components: {
-            main: blogsIndex
-          }
-        },
-        {
-          path: 'list',
-          name: 'blogsList',
-          components: {
-            main: blogsIndex
-          }
-        },
-        {
-          path: 'list/:categoryId',
-          name: 'blogsListArticle',
-          props: true,
-          components: {
-            main: blogsIndex
-          }
-        },
-        {
-          path: 'create',
-          name: 'blogsCreate',
-          components: {
-            main: Edit
-          }
-        },
-        // {
-        //   path: 'detail',
-        //   name: 'Detail',
-        //   props: true,
-        //   components: {
-        //     main: Detail
-        //   }
-        // },
-        {
-          path: 'detail/:articleId',
-          name: 'blogsDetail',
-          props: true,
-          components: {
-            main: Detail
-          }
-        },
-        {
-          path: 'update/:articleId',
-          name: 'blogsUpdate',
-          props: true,
-          components: {
-            main: Edit
-          }
-        },
-        {
-          path: 'delete/:articleId',
-          name: 'blogsDelete',
-          props: true,
-          components: {
-            main: Delete
-          }
-        }
-      ]
-    },
-    {
-      path: '/forums',
-      // name: 'base',
-      component: forumsBase,
-      children: [
-        {
-          path: 'index',
-          name: 'forumsIndex',
-          components: {
-            main: forumsIndex
-          }
-        },
-        {
-          path: 'category',
-          name: 'forumsCategory',
-          components: {
-            main: forumsIndex
-          }
-        },
-        {
-          path: 'category/:categoryId',
-          name: 'forumsCategoryList',
-          props: true,
-          components: {
-            main: forumsIndex
-          }
-        },
-        {
-          path: 'list',
-          name: 'forumsList',
-          components: {
-            main: forumsIndex
-          }
-        },
-        {
-          path: 'list/:categoryId',
-          name: 'forumsListArticle',
-          props: true,
-          components: {
-            main: forumsList
-          }
-        },
-        {
-          path: 'create',
-          name: 'forumsCreate',
-          components: {
-            main: Edit
-          }
-        },
-        {
-          path: 'detail/:articleId',
-          name: 'forumsDetail',
-          props: true,
-          components: {
-            main: Detail
-          }
-        },
-        {
-          path: 'update/:articleId',
-          name: 'forumsUpdate',
-          props: true,
-          components: {
-            main: Edit
-          }
-        },
-        {
-          path: 'delete/:articleId',
-          name: 'forumsDelete',
-          props: true,
-          components: {
-            main: Delete
-          }
-        }
-      ]
-    },
+    // {
+    //   path: '/blogs',
+    //   // name: 'base',
+    //   component: blogsBase,
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: 'blogsIndex',
+    //       components: {
+    //         main: blogsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'category',
+    //       name: 'blogsCategory',
+    //       components: {
+    //         main: blogsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'category/:categoryId',
+    //       name: 'blogsCategoryList',
+    //       props: true,
+    //       components: {
+    //         main: blogsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'list',
+    //       name: 'blogsList',
+    //       components: {
+    //         main: blogsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'list/:categoryId',
+    //       name: 'blogsListArticle',
+    //       props: true,
+    //       components: {
+    //         main: blogsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'create',
+    //       name: 'blogsCreate',
+    //       components: {
+    //         main: Edit
+    //       }
+    //     },
+    //     // {
+    //     //   path: 'detail',
+    //     //   name: 'Detail',
+    //     //   props: true,
+    //     //   components: {
+    //     //     main: Detail
+    //     //   }
+    //     // },
+    //     {
+    //       path: 'detail/:articleId',
+    //       name: 'blogsDetail',
+    //       props: true,
+    //       components: {
+    //         main: Detail
+    //       }
+    //     },
+    //     {
+    //       path: 'update/:articleId',
+    //       name: 'blogsUpdate',
+    //       props: true,
+    //       components: {
+    //         main: Edit
+    //       }
+    //     },
+    //     {
+    //       path: 'delete/:articleId',
+    //       name: 'blogsDelete',
+    //       props: true,
+    //       components: {
+    //         main: Delete
+    //       }
+    //     }
+    //   ]
+    // },
+    // {
+    //   path: '/forums',
+    //   // name: 'base',
+    //   component: forumsBase,
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: 'forumsIndex',
+    //       components: {
+    //         main: forumsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'category',
+    //       name: 'forumsCategory',
+    //       components: {
+    //         main: forumsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'category/:categoryId',
+    //       name: 'forumsCategoryList',
+    //       props: true,
+    //       components: {
+    //         main: forumsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'list',
+    //       name: 'forumsList',
+    //       components: {
+    //         main: forumsIndex
+    //       }
+    //     },
+    //     {
+    //       path: 'list/:categoryId',
+    //       name: 'forumsListArticle',
+    //       props: true,
+    //       components: {
+    //         main: forumsList
+    //       }
+    //     },
+    //     {
+    //       path: 'create',
+    //       name: 'forumsCreate',
+    //       components: {
+    //         main: Edit
+    //       }
+    //     },
+    //     {
+    //       path: 'detail/:articleId',
+    //       name: 'forumsDetail',
+    //       props: true,
+    //       components: {
+    //         main: Detail
+    //       }
+    //     },
+    //     {
+    //       path: 'update/:articleId',
+    //       name: 'forumsUpdate',
+    //       props: true,
+    //       components: {
+    //         main: Edit
+    //       }
+    //     },
+    //     {
+    //       path: 'delete/:articleId',
+    //       name: 'forumsDelete',
+    //       props: true,
+    //       components: {
+    //         main: Delete
+    //       }
+    //     }
+    //   ]
+    // },
     {
       path: '/login',
       name: 'login',

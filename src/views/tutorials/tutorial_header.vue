@@ -67,7 +67,7 @@ export default {
 }
 
 .logo {
-  background-color: #aaaaaa;
+  background-color: #ccc;
   padding: 0;
   margin: 0 250px;
   /*border-radius: 5px;*/

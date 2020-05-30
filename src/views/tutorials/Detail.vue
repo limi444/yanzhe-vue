@@ -11,15 +11,6 @@
         <div v-else>
           <p class="vhtml" v-html="compiledMarkdown" ref="helpDocs" @scroll="docsScroll"  v-highlight></p>
         </div>
-
-        <div class="previous-item">
-          <input type="button" value="上一篇" @click="switchClick(previousData.id)">
-          <span> : <a @click="switchClick(previousData.id)">{{previousData.title}}</a></span>
-        </div>
-        <div class="next-item">
-          <input type="button" value="下一篇" @click="switchClick(nextData.id)">
-          <span> : <a @click="switchClick(nextData.id)">{{nextData.title}}</a></span>
-        </div>
       </div>
 
       <div class="lists" v-if="!articleData">
@@ -30,6 +21,9 @@
         <p>感谢您的关注！！！</p>
         <p><a href="#">Read more </a></p>
       </div>
+
+      <TurnPage v-bind:TPageData="TurnPageData"></TurnPage>
+
     </div>
     <div v-if="articleData.edit_mode===1" class="right-sidebar">
       <tutorial-title-menu v-bind:navList="navList" v-bind:activeIndex="activeIndex" v-bind:childrenActiveIndex="childrenActiveIndex" @jumpId="pageJump"></tutorial-title-menu>
@@ -45,7 +39,8 @@
   import 'highlight.js/styles/atom-one-dark.css';
   import tutorialSidebar from './tutorial_sidebar'
   import tutorialTitleMenu from './tutorialTitleMenu'
-  import {getArticle} from '../../api/api'
+  import TurnPage from '../../components/TurnPage'
+  import {getArticle, listArticle} from '../../api/api'
   
   let rendererMD = new marked.Renderer();
   marked.setOptions({
@@ -66,15 +61,18 @@
   export default {
     // name: 'article',
     components: {
+      'TurnPage': TurnPage,
       'tutorial-sidebar': tutorialSidebar,
       'tutorial-title-menu': tutorialTitleMenu
     },
-    data () {
+    data() {
       return {
         articleId: 0,
         articleData: {},
-        nextData: {},
-        previousData: {},
+        categoryId: 0,
+        // TurnPageData: {},
+        // nextData: {},
+        // previousData: {},
         // 标题菜单的数据
         // navList: [],
         activeIndex: 0,
@@ -83,9 +81,23 @@
         childrenActiveIndex: 0
       }
     },
+    created() {
+      this.articleId = this.$route.params.articleId
+      this.getArticleData(this.articleId)
+      // this.getTurnPageData(this.articleData.id, this.articleData.category_id)
+    },
     mounted() {
         // this.navList = this.handleNavTree();
         this.getDocsFirstLevels(0);
+    },
+
+    watch: {
+      '$route' (to, from) {
+        // 对路由变化作出响应...
+        console.log(this.$route);
+        this.articleId = to.params.articleId;
+        this.getArticleData(this.articleId)
+      }
     },
     computed :{
       navList () {
@@ -115,63 +127,62 @@
           return marked(this.articleData.content);
         }
       },
-      // markdownContent () {
-      //   if (this.articleData.content) {
-      //     return marked(this.articleData.content)
-      //   }
+      TurnPageData () {
+        return {article_id: this.articleId, category_id: this.categoryId}
+      }
+      // TurnPageData () {
+      //   console.log('==>>>>category_id:', this.articleData.category_id)
+      //   var id = this.articleData.id
+      //   var category_id = this.articleData.category_id
+      //   var data = {}
+      //   listArticle({turn_page: {article_id: id, category_id: category_id}})
+      //   .then((response) => {
+      //     data = response.data
+      //   })
+      //   console.log('==>>>>data:', data)
+      //   return data
       // }
     },
     methods: {
       getArticleData (id) {
-        var site_type = this.$route.matched[0].path
-        if (site_type==='/blogs') {
-          getBlogsArticle(id).then((response) => {
-            console.log(response.data)
-            this.articleData = response.data
-            this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
-            this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
-          })
-            .catch(function (error) {
-              console.log(error)
-            })
-        }
-
-          getForumsNote(id).then((response) => {
-            // console.log(response.data)
-            this.articleData = response.data.result
-            this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
-            this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
-          })
-            .catch(function (error) {
-              console.log(error)
-            })
-        }
-        if (site_type==='/tutorials') {
           getArticle(id).then((response) => {
             // console.log(response.data)
-            this.articleData = response.data.result
-            this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
-            this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
+            this.articleData = response.data
+            this.categoryId = response.data.category_id
+            // this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
+            // this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
           })
-            .catch(function (error) {
-              console.log(error)
-            })
-        }
+          .catch(function (error) {
+            console.log(error)
+          })
+          // console.log('article_id:', this.articleData.id)
+          // console.log('category_id:', this.articleData.category_id)
+          // listArticle({turn_page: {article_id: this.articleData.id, category_id: this.articleData.category_id}})
+          // .then((response) => {
+          //   console.log(response.data)
+          //   this.TurnPageData = response.data
+          //   // this.TurnPageData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
+          //   // this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
+          // })
+          // .catch(function (error) {
+          //   console.log(error)
+          // })
       },
-      switchClick (id) {
-        var site_type = this.$route.matched[0].path
-        if (site_type === '/blogs') {
-          this.$router.push({name: 'blogsDetail', params: { articleId: id }})
-        }
-        if (site_type === '/forums') {
-          this.$router.push({name: 'forumsDetail', params: { articleId: id }})
-        }
-        if (site_type === '/tutorials') {
-          // this.$router.push({path:`/tutorials/detail/${id}`})
-          this.$router.push({name: 'tutorialsDetail', params: { articleId: id }})
-          // this.$router.push({name: 'about'})
-        }
+      getTurnPageData (article_id, category_id) {
+        console.log('==article_id:', article_id)
+        console.log('==category_id:', category_id)
+        listArticle({turn_page: {article_id: article_id, category_id: category_id}})
+        .then((response) => {
+            console.log(response.data)
+            this.TurnPageData = response.data
+            // this.TurnPageData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
+            // this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
       },
+      
       getLevelActiveIndex(scrollTop, docsLevels) {
           let currentIdx = null;
           let nowActive = docsLevels.some((currentValue, index) => {
@@ -339,18 +350,7 @@
           return ret;
       },
     },
-    created () {
-      this.articleId = this.$route.params.articleId
-      this.getArticleData(this.articleId)
-    },
-    watch: {
-      '$route' (to, from) {
-        // 对路由变化作出响应...
-        console.log(this.$route);
-        this.articleId = to.params.articleId;
-        this.getArticleData(this.articleId)
-      }
-    },
+    
     // beforeRouteUpdate (to, from, next) {
     //   // react to route changes...
     //   // don't forget to call next()

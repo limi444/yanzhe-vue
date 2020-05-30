@@ -32,24 +32,24 @@ export default {
   },
   methods:{
     nav: function(a, b) {
-    var c = [];
-    if (1 >= b) return this.pn = this.p = 1,
-      c.push({page: 1, text: '1'});
-      b < a && (a = b);
-      1 >= a ? a = 1 : ( c.push({page: a - 1, text: this.preText}),c.push({page: 1, text: "1"}));
-      this.p = a;
-      this.pn = b;
-      var d = 2,
-        e = 9 > b ? b : 9;
-      7 <= a && (c.push({page: '', text: '...'}), d = a - 4, e = a + 4, e = b < e ? b : e);
-      for (; d < a; d++) c.push({page: d, text: d});
-      c.push({page: a, text: a, active: true});
-      for (d = a + 1; d <= e; d++)c.push({page: d, text: d});
-      if (this.endShow === 'true') {
-        e < b && (c.push({page: b, text: '...'}), c.push({page: b, text: b}));
-      }
-      a < b && (c.push({page: a + 1, text: this.nextText}));
-      return c
+      var c = [];
+      if (1 >= b) return this.pn = this.p = 1,
+        c.push({page: 1, text: '1'});
+        b < a && (a = b);
+        1 >= a ? a = 1 : ( c.push({page: a - 1, text: this.preText}),c.push({page: 1, text: "1"}));
+        this.p = a;
+        this.pn = b;
+        var d = 2,
+          e = 9 > b ? b : 9;
+        7 <= a && (c.push({page: '', text: '...'}), d = a - 4, e = a + 4, e = b < e ? b : e);
+        for (; d < a; d++) c.push({page: d, text: d});
+        c.push({page: a, text: a, active: true});
+        for (d = a + 1; d <= e; d++)c.push({page: d, text: d});
+        if (this.endShow === 'true') {
+          e < b && (c.push({page: b, text: '...'}), c.push({page: b, text: b}));
+        }
+        a < b && (c.push({page: a + 1, text: this.nextText}));
+        return c
     },
     pageCallback: function (page) {
       this.$emit('pagefn', {page: page, totalPage: this.totalPage})

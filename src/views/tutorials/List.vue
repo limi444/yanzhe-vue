@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     totalPage(){
-      return  Math.ceil(this.proNum/12)
+      return  Math.ceil(this.proNum/10)
     }
   },
   components: {
@@ -52,7 +52,7 @@ export default {
       this.categoryId = this.$route.params.categoryId
       listArticle({
         page: this.curPage, //当前页码
-        top_category: this.categoryId
+        category: this.categoryId
       })
         .then((response) => {
         console.log(response.data)

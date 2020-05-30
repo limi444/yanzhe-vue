@@ -110,50 +110,8 @@ export default {
         console.log(error.data)
       })
     },
-    getRecommendData () {
-      listArticle({recommend:true})
-        .then((response) => {
-          this.recommendList = response.data
-        })
-        .catch((error) => {
-          console.log(error.data)
-        })
-    },
-    getRankingData () {
-      listArticle({collect:true})
-        .then((response) => {
-          this.rankingList = response.data
-        })
-        .catch((error) => {
-          console.log(error.data)
-        })
-    },
     getMenu () { // 获取菜单
       var site_type = this.$route.matched[0].path
-      if (site_type === '/blogs') {
-        getBlogsCategory({
-            params: {}
-        }).then((response) => {
-            // console.log(response.data)
-            this.allMenuLabel = response.data
-            // this.selectedData = response.data
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-      }
-      if (site_type === '/forums') {
-        getForumsCategory({
-            params: {}
-        }).then((response) => {
-            // console.log(response.data)
-            this.allMenuLabel = response.data
-            // this.selectedData = response.data
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-      }
       if (site_type === '/tutorials') {
         getTutorialsCategory({
             params: {}
@@ -213,7 +171,7 @@ ul {
 
 }
 li {
-  /*border: 1px solid green;*/
+  margin-bottom: 3px;
   border-bottom:1px solid #dedede;
   /*line-height:20px;*/
 }
