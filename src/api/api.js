@@ -2,15 +2,15 @@ import axios from 'axios'
 // Vue.prototype.$axios=axios;
 //那么在其他vue组件中就可以this.$axios调用使用
 
-// let host = 'http://127.0.0.1:8000'
+let TutorialsHost = 'http://127.0.0.1:8000'
 let host = 'http://119.29.97.152:8000'
 
 // 获取商品类别信息
 export const getTutorialsCategory = params => {
   	if ('id' in params) {
-      return axios.get(`${host}/api/tcategorys/` + params.id + '/')
+      return axios.get(`${TutorialsHost}/api/categorys/` + params.id + '/')
     } else {
-      return axios.get(`${host}/api/tcategorys/`, params)
+      return axios.get(`${TutorialsHost}/api/categorys/`, params)
     }
 }
 
@@ -44,10 +44,10 @@ export const updatePost = params => { return axios.put(`${host}/api/blogs/` + pa
 export const listBlogsCategory = params => { return axios.get(`${host}/api/bcategorys/`, { params: params }) }
 
 // 教程文章
-export const getArticle = articleId => { return axios.get(`${host}/api/tutorials/${articleId}` + '/') }
-export const listArticle = params => { return axios.get(`${host}/api/tutorials/`, { params: params }) }
-export const createArticle = params => { return axios.post(`${host}/api/tutorials/`, params) }
-export const updateArticle = params => { return axios.put(`${host}/api/tutorials/` + params.id + '/', params) }
+export const getArticle = articleId => { return axios.get(`${TutorialsHost}/api/articles/${articleId}` + '/') }
+export const listArticle = params => { return axios.get(`${TutorialsHost}/api/articles/`, { params: params }) }
+export const createArticle = params => { return axios.post(`${TutorialsHost}/api/articles/`, params) }
+export const updateArticle = params => { return axios.put(`${TutorialsHost}/api/articles/` + params.id + '/', params) }
 // 论坛随笔
 export const getNote = articleId => { return axios.get(`${host}/api/forums/${articleId}` + '/') }
 export const listNote = params => { return axios.get(`${host}/api/forums/`, { params: params }) }

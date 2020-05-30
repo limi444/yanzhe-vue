@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <tutorial-sidebar v-bind:articleContent="articleContent" ></tutorial-sidebar>
+    <tutorial-sidebar v-bind:articleContent="articleContent" class="left-sidebar"></tutorial-sidebar>
     <div class="content">
       <div class="lists" v-bind="articleData">
         <div  class="article-title"><h2><span>{{ articleData.title }}</span></h2></div>
@@ -31,7 +31,7 @@
         <p><a href="#">Read more </a></p>
       </div>
     </div>
-    <div v-if="articleData.edit_mode===1">
+    <div v-if="articleData.edit_mode===1" class="right-sidebar">
       <tutorial-title-menu v-bind:navList="navList" v-bind:activeIndex="activeIndex" v-bind:childrenActiveIndex="childrenActiveIndex" @jumpId="pageJump"></tutorial-title-menu>
     </div>
   </div>
@@ -126,8 +126,8 @@
         var site_type = this.$route.matched[0].path
         if (site_type==='/blogs') {
           getBlogsArticle(id).then((response) => {
-            // console.log(response.data)
-            this.articleData = response.data.result
+            console.log(response.data)
+            this.articleData = response.data
             this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
             this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
           })
@@ -135,7 +135,7 @@
               console.log(error)
             })
         }
-        if (site_type==='/forums') {
+
           getForumsNote(id).then((response) => {
             // console.log(response.data)
             this.articleData = response.data.result
@@ -383,6 +383,7 @@ body,html{
 }
 
 .content{
+  max-width: 800px;
   width: 100%;
   /*margin-top: 10px;*/
   /*margin-left: 250px;*/
@@ -402,7 +403,7 @@ body,html{
   border-radius: 10px;
   /*border: 1px solid #aaa;*/
   /*background:#fefefe url(../../static/images/tutorials/post_bg.gif) top repeat-x;*/
-  background-color: #eaeaea
+  background-color: #F5F5F5
 }
 
 .vhtml >>> img,p,span {

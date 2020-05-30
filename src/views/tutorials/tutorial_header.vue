@@ -10,9 +10,9 @@
     </form>
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div id="navbar">
+<!--   <div id="navbar">
     <Navbar></Navbar>
-  </div>
+  </div> -->
 </div>
   <!-- /.container-fluid -->
   <!-- <div class="push"></div> -->
@@ -67,19 +67,21 @@ export default {
 }
 
 .logo {
-  /*background-color: #aaaaaa;*/
+  background-color: #aaaaaa;
   padding: 0;
-  margin: 0 auto;
-  border-radius: 5px;
+  margin: 0 250px;
+  /*border-radius: 5px;*/
+  border-radius: 5px 5px 18px 18px;
   position: absolute;
   float: left;
   left: 20px;
-  top:5px;
-  /*bottom: 5px;*/
+  top:2px;
+  bottom: 1px;
 }
 .logo img {
   height: 45px;
   width: 80px;
+  margin: 3px;
   transition: all 0.2s ease 0s;
   -moz-transition: all 0.2s ease 0s;
   -webkit-transition: all 0.2s ease 0s;
@@ -94,15 +96,15 @@ export default {
   margin: 10px auto;
   /*border: 2px solid #68b21d;*/
   position: absolute;
-  left: 20%;
+  left: 55%;
   text-align: center;
-  width: 250px;
+  width: 350px;
   display: flex;
   flex-direction: row;
   /*vertical-align: top;*/
 }
 .header-search form .keywords {
-  width:200px;
+  width:300px;
   line-height:13px;
   height:18px;
   background:none;
@@ -116,8 +118,8 @@ export default {
 .header-search form .button {
   background-color: #cccccc;
   color: white;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   /*display: inline-block;*/
   border-radius: 5px;
   margin:0;

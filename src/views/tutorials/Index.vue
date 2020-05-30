@@ -4,12 +4,12 @@
 
     <div class="content">
   <!--    <h2>{{ selectData }}</h2>-->
-      <div class="lists" v-for="cate in categoryData" :key="cate.id">
-        <h2><a @click="getCategoryData({id: cate.id})">
-          <span>{{ cate.name }}</span>
+      <div class="lists" v-for="cate in categoryData" :key="cate[0].id">
+        <h2><a @click="getCategoryData({id: cate[0].id})">
+          <span>{{ cate[0].name }}</span>
         </a></h2>
         <div class="clr"></div>
-        <p>{{ cate.desc }}</p>
+        <p>{{ cate[0].descri }}</p>
       </div>
 
       <div class="lists" v-if="!categoryData">

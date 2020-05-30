@@ -1,6 +1,6 @@
 <template>
     <div class="gadget">
-        <h3>内容节点</h3>
+        <!-- <h3>内容节点</h3> -->
         <div class="container">
             <div class="menu">
                 <ul class="menu-list">
@@ -282,7 +282,7 @@ export default {
 .gadget {
   /*position: relative;*/
   /*float: right;*/
-  right: 10px;
+  right: 50px;
   position:fixed;
   margin:10px 5px;
   padding:10px 10px;
@@ -290,6 +290,9 @@ export default {
   /*border:1px solid #d8d6d6;*/
   border-radius: 5px;
   background:#fefefe url(../../static/images/tutorials/post_bg.gif) top repeat-x;
+}
+.menu {
+    margin-top: 20px;
 }
 
 h3 {

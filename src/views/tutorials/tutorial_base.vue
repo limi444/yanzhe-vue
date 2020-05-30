@@ -34,10 +34,12 @@ export default {
 </script>
 
 <style scoped>
+
+
 .tutorials{
-  /*min-width: 680px;*/
-  min-width:47.5rem;
-  max-width:66.25rem;
+  min-width: 880px;
+  /*min-width:47.5rem;*/
+  max-width:1080px;
   margin: 0 auto;
   /*position: relative;*/
 }

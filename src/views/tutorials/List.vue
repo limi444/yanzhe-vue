@@ -96,7 +96,7 @@ export default {
 
 .lists{
   height: 50px;
-  border: 2px solid #ccc;
+  /*border: 2px solid #ccc;*/
   margin: 10px 20px;
   padding: 1px 20px;
   border-radius: 10px;

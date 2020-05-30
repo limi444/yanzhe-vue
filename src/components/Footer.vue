@@ -1,15 +1,15 @@
 <template>
   <div id="footer">
-    <div class="footer-content-block">
+<!--     <div class="footer-content-block">
       <ul class="list-inline">
         <li><a href="/intros/index">示者</a></li>
         <li><a href="/tutorials/index">行者</a></li>
         <li><a href="/blogs/index">知者</a></li>
         <li><a href="/forums/index">言者</a></li>
         <li><a href="#">投诉与建议</a></li>
-<!--        <li><a href="#">Dribbble</a></li>-->
+        <li><a href="#">Dribbble</a></li>
       </ul>
-    </div>
+    </div> -->
     <div class="overlay feature"></div><br>
     <p>Copyright &copy; 2017.言者 All rights reserved. 版权所有 <a href="http://www.beian.miit.gov.cn">粤ICP备18047373号-1</a> </p>
   </div>
@@ -32,7 +32,7 @@
     padding: 10px 0px;
     border-radius: 10px;
     margin: 20px 5px;
-    border: 2px solid #42b983;
+    /*border: 2px solid #42b983;*/
   }
 
   ul{

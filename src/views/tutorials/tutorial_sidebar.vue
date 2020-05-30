@@ -1,15 +1,15 @@
 <template>
   <div class="sidebar">
     <div class="gadget">
-      <a v-on:click="getWiseWordData"><h3>Wise Words</h3></a>
+      <a v-on:click="getWiseWordData"></a>
       <div class="clr"></div>
       <p class="wise">   <img src="../../static/images/tutorials/test_1.gif" alt="image" width="18" height="17" /> <em v-html="wiseword.content"> </em><img src="../../static/images/tutorials/test_2.gif" alt="image" width="18" height="17" /></p>
       <p class="ww-author" style="float:right;"><strong>{{wiseword.author}}</strong></p>
     </div>
 
     <div class="gadget">
-      <h3><a href="/tutorials/index" style="font-weight:bold;color: #2c3e50">INDEX</a></h3>
-      <div class="clr"></div>
+      <h3><a href="/tutorials/index" style="font-weight:bold;color: #2c3e50">-------</a></h3>
+<!--       <div class="clr"></div>
       <ul class="parent_menu">
         <li class="category1" v-for="(cate1,index) in allMenuLabel" :key="cate1.id" >
           <a @click="clickCategory1(cate1, index)" @dblclick="dblclickArticleData(cate1.id)">{{cate1.name}}</a>
@@ -27,9 +27,14 @@
             </li>
           </ul>
         </li>
+      </ul> -->
+      <ul>
+        <li class="category1" v-for="(cate_list,index) in allMenuLabel" :key="cate_list[0].id" >
+          <a @click="clickCategory1(cate_list[0], index)" @dblclick="dblclickArticleData(cate_list[0].id)">{{cate_list[0].name}} ({{cate_list[1]}})</a>
+        </li>
       </ul>
     </div>
-    <div class="gadget">
+<!--     <div class="gadget">
       <h3><span>精华推荐</span></h3>
       <div class="clr"></div>
       <ul class="ex_menu recommend" v-if="recommendList">
@@ -48,7 +53,7 @@
       <ul class="ex_menu" v-else>
         <li>暂时没有排行文章</li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -70,14 +75,14 @@ export default {
       // showShopCar:false, // 购物车显示控制
       // isShowVip:false,
       // contentData: [],
-      recommendList: [
-        {id:1, title: '暂无推荐文章'},
-        {id:1, title: '暂无推荐文章'},
-      ],
-      rankingList: [
-        {id:1, title: '暂无推荐文章'},
-        {id:1, title: '暂无推荐文章'},
-      ],
+      // recommendList: [
+      //   {id:1, title: '暂无推荐文章'},
+      //   {id:1, title: '暂无推荐文章'},
+      // ],
+      // rankingList: [
+      //   {id:1, title: '暂无推荐文章'},
+      //   {id:1, title: '暂无推荐文章'},
+      // ],
       wiseword: {
         content: '',
         auther: 'cml'
@@ -166,8 +171,8 @@ export default {
   created () {
     this.getWiseWordData() // 获取鸡汤
     this.getMenu() // 获取菜单
-    this.getRecommendData() // 获取热词
-    this.getRankingData() // 获取热词
+    // this.getRecommendData() // 获取热词
+    // this.getRankingData() // 获取热词
     // 更新store数据
     // this.$store.dispatch('setShopList') // 获取购物车数据
   }
