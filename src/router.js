@@ -56,7 +56,7 @@ export default new Router({
       path: '/',
       name: 'home',
       redirect: '/tutorials/index'
-      // component: tutorialBase
+      // component: tutorialIndex
     },
     // {
     //   path: '/about',

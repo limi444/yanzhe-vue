@@ -7,7 +7,8 @@
   <!--      <a @click="getCategoryData({id: cate.id})">{{ cate.title }}</a>-->
         <router-link :to="'/tutorials/detail/' + article.id" class="article-link">{{ article.title }}</router-link>
         <div class="clr"></div>
-  <!--      <p>{{ article.descri }}</p>-->
+        <span>[{{ article.created_time }}] / [{{ article.updated_time }}]</span>
+        <p>{{ article.descri }}</p>
       </div>
 
       <div class="lists" v-if="!listData">
@@ -34,13 +35,13 @@ export default {
     return {
       categoryId: '', // 当前选择的类别id
       curPage: 1, // 当前页码
-      proNum: 0, // 商品数量
+      total: 0, // 文章总数量
       listData: [] // 选择类别的列表数据
     }
   },
   computed: {
     totalPage(){
-      return  Math.ceil(this.proNum/10)
+      return  Math.ceil(this.total/10)
     }
   },
   components: {
@@ -57,7 +58,7 @@ export default {
         .then((response) => {
         console.log(response.data)
         this.listData = response.data.results
-        this.proNum = response.data.count
+        this.total = response.data.total
       })
     },
     gohome () {
@@ -120,5 +121,8 @@ export default {
   /*设置元素的margin样式值为 auto*/
   margin:auto;
 }
-
+span{
+  float: right;
+  font-size: 10px;
+}
 </style>

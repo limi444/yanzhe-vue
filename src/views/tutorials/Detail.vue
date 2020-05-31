@@ -70,7 +70,6 @@
         articleId: 0,
         articleData: {},
         categoryId: 0,
-        // TurnPageData: {},
         // nextData: {},
         // previousData: {},
         // 标题菜单的数据
@@ -84,7 +83,6 @@
     created() {
       this.articleId = this.$route.params.articleId
       this.getArticleData(this.articleId)
-      // this.getTurnPageData(this.articleData.id, this.articleData.category_id)
     },
     mounted() {
         // this.navList = this.handleNavTree();
@@ -130,18 +128,6 @@
       TurnPageData () {
         return {article_id: this.articleId, category_id: this.categoryId}
       }
-      // TurnPageData () {
-      //   console.log('==>>>>category_id:', this.articleData.category_id)
-      //   var id = this.articleData.id
-      //   var category_id = this.articleData.category_id
-      //   var data = {}
-      //   listArticle({turn_page: {article_id: id, category_id: category_id}})
-      //   .then((response) => {
-      //     data = response.data
-      //   })
-      //   console.log('==>>>>data:', data)
-      //   return data
-      // }
     },
     methods: {
       getArticleData (id) {
@@ -150,32 +136,6 @@
             this.articleData = response.data
             this.categoryId = response.data.category_id
             // this.nextData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
-            // this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-          // console.log('article_id:', this.articleData.id)
-          // console.log('category_id:', this.articleData.category_id)
-          // listArticle({turn_page: {article_id: this.articleData.id, category_id: this.articleData.category_id}})
-          // .then((response) => {
-          //   console.log(response.data)
-          //   this.TurnPageData = response.data
-          //   // this.TurnPageData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
-          //   // this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
-          // })
-          // .catch(function (error) {
-          //   console.log(error)
-          // })
-      },
-      getTurnPageData (article_id, category_id) {
-        console.log('==article_id:', article_id)
-        console.log('==category_id:', category_id)
-        listArticle({turn_page: {article_id: article_id, category_id: category_id}})
-        .then((response) => {
-            console.log(response.data)
-            this.TurnPageData = response.data
-            // this.TurnPageData = response.data.next || {'id': 0, 'title': '没有下一篇了'}
             // this.previousData = response.data.previous || {'id': 0, 'title': '没有上一篇了'}
           })
           .catch(function (error) {

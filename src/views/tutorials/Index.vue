@@ -43,7 +43,7 @@ export default {
   methods: {
     getCategoryData (params) {
       getTutorialsCategory(params).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.categoryData = response.data
       })
         .catch(function (error) {

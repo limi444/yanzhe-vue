@@ -35,7 +35,7 @@
 	  	TPageData: function(newData, oldData){
 	  	  listArticle({turn_page: newData})
 	  	  .then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             this.nextData = response.data.next || [0, '没有下一篇了'] //{'id': 0, 'title': '没有下一篇了'}
             this.previousData = response.data.previous || [0, '没有上一篇了']  //{'id': 0, 'title': '没有上一篇了'}
           })
