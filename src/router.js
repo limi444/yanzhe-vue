@@ -42,14 +42,14 @@ Router.prototype.push = function push(location) {
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '*',
       component: HelloWorld,
       meta: {
-          title: '404未找到',
+          title: '404 未找到',
       },
     },
     {
