@@ -9,21 +9,21 @@ import Home from './views/Home.vue'
 // import blogsBase from './views/blogs/blogs_base'
 // import blogsIndex from './views/blogs/Index'
 
-import tutorialBase from './views/tutorials/tutorial_base'
-import tutorialIndex from './views/tutorials/Index'
-import tutorialList from './views/tutorials/List'
-import tutorialDetail from './views/tutorials/Detail'
+const tutorialBase = () => import('@/views/tutorials/tutorial_base')
+const tutorialIndex = () => import('@/views/tutorials/Index')
+const tutorialList = () => import('@/views/tutorials/List')
+const tutorialDetail = () => import('@/views/tutorials/Detail')
 
-import userInfo from './views/users/userInfo'
-import Login from './views/users/Login'
-import Register from './views/users/Register'
-import FindPwd from './views/users/FindPwd'
+const userInfo = () => import('@/views/users/userInfo')
+const Login = () => import('@/views/users/Login')
+const Register = () => import('@/views/users/Register')
+const FindPwd = () => import('@/views/users/FindPwd')
 
 // 定义测试路由
-import Category from './components/CategorySelect'
-import Edit from './components/Edit'
-import Detail from './components/Detail'
-import HelloWorld from './components/HelloWorld'
+const Category = () => import('@/components/CategorySelect')
+const Edit = () => import('@/components/Edit')
+const Detail = () => import('@/components/Detail')
+const HelloWorld = () => import('@/components/HelloWorld')
 
 // import Comments from '../components/Comments'
 // import userInfo from '../views/users/userInfo'
@@ -38,7 +38,6 @@ const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err);
 };
-
 Vue.use(Router)
 
 export default new Router({
