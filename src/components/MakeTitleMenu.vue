@@ -128,11 +128,14 @@ export default {
             return currentIdx
         },
         pageJump(id) {
+            console.log('===>', id)
             this.titleClickScroll = true;
-            this.$refs.helpDocs.scrollTop = this.$el.querySelector(`#data-${id}`).offsetTop - 40;
+            // this.$refs.helpDocs.scrollTop = this.$el.querySelector(`#${id}`).offsetTop - 40;
+            this.$el.querySelector(`#data-${id}`).scrollIntoView()
             setTimeout(() => this.titleClickScroll = false, 100);
         },
         currentClick(index) {
+            console.log('currentClick')
            this.activeIndex = index
            this.getDocsSecondLevels(index)
         },

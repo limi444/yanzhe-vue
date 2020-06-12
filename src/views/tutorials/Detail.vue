@@ -35,6 +35,7 @@
   import marked from 'marked'
   import hljs from "highlight.js"
   // import javascript from 'highlight.js/lib/languages/javascript';
+  // import 'highlight.js/styles/googlecode.css' //样式文件
   // import 'highlight.js/styles/monokai-sublime.css';
   import 'highlight.js/styles/atom-one-dark.css';
   import tutorialSidebar from './tutorial_sidebar'
@@ -70,6 +71,7 @@
         articleId: 0,
         articleData: {},
         categoryId: 0,
+        // TurnPageData: {},
         // nextData: {},
         // previousData: {},
         // 标题菜单的数据
@@ -83,6 +85,7 @@
     created() {
       this.articleId = this.$route.params.articleId
       this.getArticleData(this.articleId)
+
     },
     mounted() {
         // this.navList = this.handleNavTree();
@@ -120,7 +123,7 @@
           rendererMD.code = function(code, language) {
               code = code.replace(/\r\n/g,"<br>")
               code = code.replace(/\n/g,"<br>");
-              return `<div class="text">${code}</div>`;
+              return `<pre class="hljs"><code>${code}</code></pre>`;
           };
           return marked(this.articleData.content);
         }
@@ -369,6 +372,7 @@ body,html{
 .vhtml >>> img,p,span {
   width: 100%;
   overflow: auto;
+  /*white-space: pre-wrap;*/
 }
 
 a:hover{
