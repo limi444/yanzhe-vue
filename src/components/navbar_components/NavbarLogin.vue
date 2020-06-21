@@ -1,11 +1,12 @@
 <template>
   <ul class="nav navbar-nav">
     <div v-if="user.username">
+      <i class="iconfont icon-nickname"></i>
       <li><a href="">{{ user.username }}</a></li>
       <li><a v-on:click="loginOut">退出</a></li>
     </div>
     <div v-else>
-      <li><router-link :to="'/login'" class="page-scroll">登錄</router-link></li>
+      <li class="iconfont icon-nickname"><router-link :to="'/login'" class="page-scroll">登錄</router-link></li>
       <li><router-link :to="'/register'" class="page-scroll" >注冊</router-link></li>
     </div>
   </ul>

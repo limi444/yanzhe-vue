@@ -10,10 +10,10 @@
                             <input type="text" name="title" maxlength="255" required="" id="id_title" v-model="articleData.title">
                         </div>
                     </div>
-                    <div class="form-row field-descri">
+                    <div class="form-row field-description">
                         <div>
-                            <label for="id_descri">摘要:</label>
-                            <input type="text" name="descri" maxlength="1024" id="id_descri" v-model="articleData.descri">
+                            <label for="id_description">摘要:</label>
+                            <input type="text" name="description" maxlength="1024" id="id_description" v-model="articleData.description">
                         </div>
                     </div>
                     <CategorySelect v-model="selectedCategoryId" v-on:selectCategoryhandle="listenToCategory"></CategorySelect>
@@ -78,7 +78,7 @@ export default {
         article: {
             type: Object,
             default: function () {
-                return { title: '123', descri: '', content: '', status: 1, edit_mode: 1, category: 0, create_time: '' }
+                return { title: '123', description: '', content: '', status: 1, edit_mode: 1, category: 0, create_time: '' }
             }
         },
         // tinymce参数

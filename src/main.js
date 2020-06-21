@@ -9,6 +9,7 @@ import './axios/';
 import Axios from 'axios';
 Vue.prototype.$http = Axios
 
+import './assets/iconfont/iconfont.css'
 // 高亮显示
 import 'highlight.js/styles/default.css';
 import Highlight from 'vue-markdown-highlight'

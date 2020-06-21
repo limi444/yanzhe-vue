@@ -26,7 +26,7 @@
                 selectedCategory: 0,
                 article: {
                     title: '',
-                    descri: '',
+                    description: '',
                     content: '',
                     status: 1,
                     edit_mode: 1,

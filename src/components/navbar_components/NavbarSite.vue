@@ -1,7 +1,10 @@
 <template>
   <ul class="nav navbar-nav">
-    <li v-for="nav in navList" :key="nav.id"><a class="page-scroll" :href="nav.url">{{nav.name}}</a></li>
-    <li><a class="page-scroll" href="/#section-contact">聯系我們</a></li>
+    <li v-for="nav in navList" :key="nav.id">
+      <!-- <i class="iconfont" :class="nav.icon" :style="{background: nav.color}"></i> -->
+      <a class="iconfont" :class="nav.icon" :style="{background: nav.color}" :href="nav.url">{{nav.name}}</a>
+    </li>
+    <!-- <li><a class="page-scroll" href="/#section-contact">聯系我們</a></li> -->
   </ul>
 </template>
 
@@ -11,7 +14,13 @@
     name: 'NavbarSite',
     data () {
       return {
-        navList: []
+        navList: [
+          {name: '言者', icon: 'icon-home', color: '#cccccc', url: '#'},
+          {name: '行者', icon: 'icon-guarantee', color: '#cccccc', url: '#'},
+          {name: '示者', icon: 'icon-Privacy', color: '#cccccc', url: '#'},
+          {name: '知者', icon: 'icon-QA', color: '#cccccc', url: '#'},
+          {name: 'Call Me', icon: 'icon-QA', color: '#cccccc', url: '#'},
+        ]
       }
     },
     computed: {
@@ -41,12 +50,13 @@
     },
     created () {
       // sessionStorage.clear()
-      this.getNav()
+      // this.getNav()
     }
   }
 </script>
 
 <style scoped>
+  
   /*.navbar{*/
   /*  !*display: flex;*!*/
   /*  !*flex-direction: row;*!*/

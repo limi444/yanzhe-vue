@@ -41,6 +41,7 @@ Router.prototype.push = function push(location) {
 Vue.use(Router)
 
 export default new Router({
+  // linkActiveClass: 'active',
   mode: 'hash',
   base: process.env.BASE_URL,
   routes: [

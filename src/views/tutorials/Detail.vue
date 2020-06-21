@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <tutorial-sidebar v-bind:articleContent="articleContent" class="left-sidebar"></tutorial-sidebar>
+    <tutorial-sidebar class="left-sidebar"></tutorial-sidebar>
     <div class="content">
-      <div class="lists" v-bind="articleData">
+      <div class="lists">
         <div  class="article-title"><h2><span>{{ articleData.title }}</span></h2></div>
         <div class="clr"></div>
         <div v-if="articleData.edit_mode===2">
@@ -34,7 +34,7 @@
 <script>
   import marked from 'marked'
   import hljs from "highlight.js"
-  // import javascript from 'highlight.js/lib/languages/javascript';
+  import javascript from 'highlight.js/lib/languages/javascript';
   // import 'highlight.js/styles/googlecode.css' //样式文件
   // import 'highlight.js/styles/monokai-sublime.css';
   import 'highlight.js/styles/atom-one-dark.css';
@@ -46,9 +46,14 @@
   let rendererMD = new marked.Renderer();
   marked.setOptions({
       renderer: rendererMD,
-      highlight: function(code) {
-        return hljs.highlightAuto(code).value;
+      highlight: function(code, language) {
+        const hljs = require('highlight.js');
+        const validLanguage = hljs.getLanguage(language) ? language : 'python';
+        return hljs.highlight(validLanguage, code).value;
       },
+      // highlight: function(code) {
+      //   return hljs.highlightAuto(code).value;
+      // },
       gfm: true,  //启动类似Github样式的Markdown,填写true或者false
       tables: true,  //支持Github形式的表格，必须打开gfm选项
       breaks: false,
@@ -56,7 +61,8 @@
       sanitize: false,  //原始输出，忽略HTML标签，这个作为一个开发人员，一定要写flase
       smartLists: true,
       smartypants: false,
-      xhtml: false
+      xhtml: false,
+      langPrefix: 'language-'
   });
 
   export default {
@@ -95,7 +101,7 @@
     watch: {
       '$route' (to, from) {
         // 对路由变化作出响应...
-        console.log(this.$route);
+        // console.log(this.$route);
         this.articleId = to.params.articleId;
         this.getArticleData(this.articleId)
       }
@@ -120,11 +126,11 @@
                   return `<h${level}>${text}</h${level}>`;
               }
           };
-          rendererMD.code = function(code, language) {
-              code = code.replace(/\r\n/g,"<br>")
-              code = code.replace(/\n/g,"<br>");
-              return `<pre class="hljs"><code>${code}</code></pre>`;
-          };
+          // rendererMD.code = function(code, language) {
+          //     code = code.replace(/\r\n/g,"<br>")
+          //     code = code.replace(/\n/g,"<br>");
+          //     return `<pre class="language-bash hljs"><code class="language-bash">${code}</code></pre>`;
+          // };
           return marked(this.articleData.content);
         }
       },

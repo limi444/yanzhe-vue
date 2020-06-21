@@ -97,7 +97,7 @@ export default {
             console.log(error)
           })
       }
-      if (site_type === '/forums') {
+      else if (site_type === '/forums') {
         getForumsCategory({
           params: {}
         }).then((response) => {
@@ -108,9 +108,9 @@ export default {
             console.log(error)
           })
       }
-      if (site_type === '/tutorials') {
+      else if (site_type === '/tutorials') {
         getTutorialsCategory({
-          params: {}
+          params: {is_nested: true}
         }).then((response) => {
           console.log(response)
           this.categoryData1List = response.data
